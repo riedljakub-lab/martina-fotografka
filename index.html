@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fotografka Martina Hladká | Svatební a portrétní focení</title>
+<meta name="description" content="Svatební, portrétní a rodinné focení. Přirozené fotografie bez pózování. Svatby od 14 000 Kč, portréty od 3 000 Kč. Podívejte se na galerie a napište si o termín.">
+<meta name="robots" content="index, follow">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="cs_CZ">
+<meta property="og:site_name" content="Fotografka Martina">
+<meta property="og:title" content="Fotografka Martina Hladká | Svatební a portrétní focení">
+<meta property="og:description" content="Svatební, portrétní a rodinné focení. Přirozené fotografie bez pózování.">
+<meta property="og:image" content="upload/full-width/main-page.webp">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"ProfessionalService","name":"Fotografka Martina Hladká","description":"Svatební, portrétní a rodinné focení.","email":"m.pelclova@gmail.com","priceRange":"3 000–20 000 Kč","sameAs":["https://www.instagram.com/martinahladka_fotograf/"]}
+</script>
+<link rel="icon" type="image/svg+xml" href="upload/favicon/favicon.svg">
+<link rel="icon" type="image/png" sizes="180x180" href="upload/favicon/favicon.png">
+<link rel="apple-touch-icon" href="upload/favicon/favicon.png">
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..600;1,6..96,400..600&family=Archivo:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  /* ---------- Monochrome editorial design tokens ---------- */
+  :root{
+    --color-charcoal:#2A2A2A;
+    --color-white:#FFFFFF;
+    --color-paper:#F4F4F2;
+    --color-mist:#DDDDDA;
+    --color-black:#000000;
+    --color-black-hover:#3A3A3A;
+    --font-display:"Bodoni Moda",Georgia,serif;
+    --font-ui:"Archivo",system-ui,sans-serif;
+    --shadow-card:0 1px 2px rgba(42,42,42,.06);
+    --shadow-modal:0 8px 24px rgba(42,42,42,.12);
+  }
+
+  html{ font-optical-sizing:none; font-variation-settings:"opsz" 11; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; scroll-behavior:smooth; }
+  @media (prefers-reduced-motion:reduce){ html{ scroll-behavior:auto; } }
+  /* One-pager: keep anchored sections clear of the viewport edge */
+  [id]{ scroll-margin-top:64px; }
+  body{
+    background:var(--color-paper);
+    color:var(--color-charcoal);
+    font-family:var(--font-ui);
+    font-size:16px;
+    font-weight:400;
+    line-height:1.7;
+  }
+
+  .serif{ font-family:var(--font-display); }
+
+  /* ---------- Type scale ---------- */
+  .display{
+    font-family:var(--font-display);
+    font-weight:500;
+    line-height:1.05;
+    letter-spacing:0.01em;
+    text-transform:uppercase;
+    font-size:clamp(30px,5.4vw,64px);
+  }
+  .display-italic{
+    font-family:var(--font-display);
+    font-weight:500;
+    font-style:italic;
+    line-height:1.05;
+    letter-spacing:0.025em;
+    text-transform:uppercase;
+    font-size:clamp(30px,5.4vw,64px);
+  }
+  .h2{
+    font-family:var(--font-display);
+    font-weight:500;
+    line-height:1.15;
+    letter-spacing:0.01em;
+    font-size:clamp(26px,3vw,32px);
+  }
+  .h2-caps{
+    font-family:var(--font-display);
+    font-weight:500;
+    line-height:1.15;
+    letter-spacing:0.02em;
+    text-transform:uppercase;
+    font-size:clamp(30px,3.6vw,40px);
+  }
+  .h3{
+    font-family:var(--font-display);
+    font-weight:500;
+    line-height:1.25;
+    font-size:22px;
+  }
+  .body{ font-size:16px; font-weight:400; line-height:1.7; }
+  .caption{ font-size:13px; font-weight:400; line-height:1.5; }
+  .label{
+    font-size:13px;
+    font-weight:600;
+    letter-spacing:1px;
+    text-transform:uppercase;
+    line-height:1.5;
+  }
+  /* Hero strapline — slightly larger than a caption so it holds the bottom
+     of the first screen, matching the reference's weight balance. */
+  .strap{ font-size:14px; font-weight:500; letter-spacing:1px; text-transform:uppercase; line-height:1.5; }
+  .strap-strong{ font-size:15px; font-weight:700; letter-spacing:1px; text-transform:uppercase; line-height:1.45; }
+  .nav-link{
+    font-size:13px;
+    font-weight:500;
+    letter-spacing:1px;
+    text-transform:uppercase;
+    color:var(--color-charcoal);
+    line-height:1.5;
+    transition:color .2s ease;
+  }
+  .nav-link:hover{ opacity:.8; }
+  .nav-link[aria-current="page"]{ color:var(--color-black); box-shadow:0 1px 0 var(--color-black); }
+
+  /* ---------- Components ---------- */
+  .btn-primary{
+    display:inline-block;
+    background:var(--color-black);
+    color:var(--color-white);
+    font-size:13px;
+    font-weight:600;
+    letter-spacing:1px;
+    text-transform:uppercase;
+    padding:16px 48px;
+    border-radius:2px;
+    transition:background .2s ease;
+  }
+  .btn-primary:hover{ background:var(--color-black-hover); }
+
+  .link-underline{
+    font-size:13px;
+    font-weight:600;
+    letter-spacing:1px;
+    text-transform:uppercase;
+    color:var(--color-charcoal);
+    border-bottom:1px solid currentColor;
+    padding-bottom:3px;
+    transition:color .2s ease;
+  }
+  .link-underline:hover{ color:var(--color-black); }
+
+  .slider-arrow{
+    width:34px;height:34px;
+    border:1px solid rgba(42,42,42,.35);
+    border-radius:9999px;
+    display:flex;align-items:center;justify-content:center;
+    color:var(--color-charcoal);
+    transition:border-color .2s ease,color .2s ease;
+    flex:none;
+  }
+  .slider-arrow:hover{ border-color:var(--color-black); color:var(--color-black); }
+  /* The 34px arrows plus their gaps left the quote only ~226px on a 390px
+     screen. Smaller arrows and tighter gutters give it ~280px. */
+  @media (max-width:767px){
+    .slider-arrow{ width:28px; height:28px; }
+    .slider-arrow svg{ width:12px; height:12px; }
+  }
+
+  /* Signature wordmark */
+  .signature{
+    white-space:nowrap;
+    font-family:var(--font-display);
+    font-style:italic;
+    font-weight:500;
+    font-size:26px;
+    letter-spacing:0;
+    line-height:1;
+    color:var(--color-charcoal);
+  }
+
+  /* Fixed top bar — sits over full-bleed photography, so it carries its own
+     paper veil to keep charcoal text above 4.5:1 contrast. */
+  .top-bar{
+    background:rgba(244,244,242,.92);
+    backdrop-filter:saturate(140%) blur(10px);
+    -webkit-backdrop-filter:saturate(140%) blur(10px);
+    border-bottom:1px solid var(--color-mist);
+  }
+
+  .card{
+    background:var(--color-white);
+    border-radius:4px;
+    box-shadow:var(--shadow-card);
+  }
+
+  img{ border-radius:0; }
+  .img-rounded{ border-radius:4px; }
+
+  .testimonial[hidden]{ display:none; }
+
+  ::selection{ background:var(--color-mist); color:var(--color-charcoal); }
+
+  :focus-visible{ outline:2px solid var(--color-black); outline-offset:3px; }
+
+  /* Opening screen, set like a magazine cover: the photograph runs edge to edge
+     and stays completely clean, and the headline sits bottom-left on a paper
+     band underneath it, inside the same first screen. Nothing overlaps the
+     people, so no card or scrim is needed. The crop is biased to 65% so a wide
+     viewport trims feet and upper sky, never the castle tower or the bouquet. */
+  .h1{
+    font-family:var(--font-display); font-weight:500;
+    font-size:clamp(34px,4.45vw,64px); line-height:1.05; letter-spacing:0;
+    color:var(--color-charcoal);
+  }
+  .btn-secondary{
+    display:inline-block;
+    border:1px solid var(--color-charcoal); color:var(--color-charcoal);
+    font-size:13px; font-weight:600; letter-spacing:1px; text-transform:uppercase;
+    padding:15px 32px; border-radius:2px;
+    transition:background .2s ease,color .2s ease;
+  }
+  .btn-secondary:hover{ background:var(--color-charcoal); color:var(--color-white); }
+  /* Hero headline carries more weight than the page's other H1-scale type */
+  .hero-photo .h1{ font-size:clamp(34px,4.45vw,64px); font-weight:600; line-height:1.02; letter-spacing:-.005em;
+    /* Dark type over a photograph needs a light halo, not a dark shadow: three
+       stacked paper-coloured glows lift the letters off the crowd behind. */
+    text-shadow:0 0 2px rgba(244,244,242,.7), 0 0 15px rgba(244,244,242,.7), 0 0 15px rgba(244,244,242,.42), 0 0 41px rgba(244,244,242,.7), 0 0 41px rgba(244,244,242,.28); }
+  @media (max-width:767px){ .hero-photo .h1{ line-height:1.12; } }
+  .hero-photo{ padding-top:64px; }
+  /* Mobile: the square crop is shown whole, edge to edge, and dissolves into
+     the paper along its lower edge; the headline rises into that dissolve so
+     picture and type read as one piece, then two full-width buttons. */
+  .hero-photo img{
+    display:block; width:100%; aspect-ratio:1/1; object-fit:cover; object-position:center bottom; border-radius:0;
+    -webkit-mask-image:linear-gradient(to bottom,#000 70%,transparent 97%);
+    mask-image:linear-gradient(to bottom,#000 70%,transparent 97%);
+  }
+  .hero-photo-copy{ position:relative; margin-top:-64px; padding:0 24px 48px; display:flex; flex-direction:column; gap:24px; }
+  @media (max-width:767px){
+    .hero-actions{ flex-direction:column; }
+    .hero-actions a{ text-align:center; }
+  }
+  .hero-actions{ display:flex; flex-wrap:wrap; gap:8px; }
+  .hero-actions .btn-primary{ padding:16px 32px; }
+  /* Desktop: the photograph dissolves into the paper background along its
+     lower edge and the headline sits in that dissolve, bottom-left, so type and
+     picture read as one surface. The mask is interim — once the retouched
+     photograph has its own calm area there, drop the two mask lines. */
+  @media (min-width:768px){
+    .hero-photo{ position:relative; height:100vh; min-height:640px; overflow:hidden; }
+    .hero-photo img{
+      position:absolute; left:0; right:0; top:64px; bottom:0; height:calc(100% - 64px); aspect-ratio:auto;
+      object-position:center bottom;
+      -webkit-mask-image:linear-gradient(to bottom,#000 60%,transparent 86%);
+      mask-image:linear-gradient(to bottom,#000 60%,transparent 86%);
+    }
+    .hero-photo-copy{
+      position:absolute; left:0; right:0; bottom:0; margin-top:0;
+      flex-direction:row; align-items:flex-end; justify-content:space-between; flex-wrap:wrap;
+      gap:24px 48px; padding:0 94px 48px;
+    }
+  }
+
+  /* Slot system: nav labels and meta links sit on the same 8.16667vw columns
+     as the dots. Nav labels clear the dot by 14px; meta labels sit on it. */
+  .slot{ width:8.16667vw; flex:none; }
+  .nav-slot{ padding-left:14px; }
+
+  .wordmark{
+    font-family:var(--font-display);
+    font-weight:500;
+    font-size:15.6vw;
+    line-height:.72;
+    letter-spacing:-.005em;
+    text-indent:-.045em;   /* cancel the M's side bearing so it flushes left */
+    color:var(--color-charcoal);
+    white-space:nowrap;
+    margin-top:-4.375vw;   /* laps the cap height back over the photo row */
+    position:relative; z-index:20;
+  }
+
+  /* Priced package row inside a collection block */
+  .price{ font-size:16px; font-weight:600; line-height:1.4; white-space:nowrap; }
+  /* One inclusion per line: a wrapped inline list pushed separator dots
+     outside the column's left edge whenever a row broke. */
+  .pkg-list{
+    font-size:14px; line-height:1.6;
+    color:rgba(42,42,42,.72);
+  }
+  .pkg-list li{ position:relative; padding-left:15px; }
+  .pkg-list li::before{
+    content:''; position:absolute; left:0; top:.66em;
+    width:3px; height:3px; border-radius:50%;
+    background:rgba(42,42,42,.34);
+  }
+
+  /* O mně — a white band lifts the section off the paper-grey page. The hero's dot
+     field bleeds a short way into its top edge and dissolves, so the tonal step
+     reads as a transition rather than a seam. */
+  .about{ background:var(--color-white); border-top:1px solid var(--color-mist); border-bottom:1px solid var(--color-mist); }
+  .about-dots{
+    position:absolute; left:0; right:0; top:0; height:260px;
+    background-image:radial-gradient(currentColor .9px,transparent 1px);
+    background-size:9.4733vw 9.4733vw;
+    background-position:-6.6086vw -4.7361vw;
+    color:rgba(42,42,42,.20);
+    -webkit-mask-image:linear-gradient(to bottom,#000,transparent);
+    mask-image:linear-gradient(to bottom,#000,transparent);
+    pointer-events:none;
+  }
+  .heart{ color:var(--color-charcoal); display:inline-block; vertical-align:-.08em; margin-left:.32em; }
+
+  /* Service index — the boxes are the navigation into the priced sections,
+     not decoration. Arrow slides in on hover. */
+  .service{
+    display:flex; align-items:center; justify-content:space-between; gap:16px;
+    padding:15px 16px;
+    border:1px solid var(--color-mist);
+    border-radius:2px;
+    font-size:13px; font-weight:600; letter-spacing:1px; text-transform:uppercase;
+    color:var(--color-charcoal); background:var(--color-white);
+    transition:border-color .2s ease,color .2s ease,background .2s ease;
+  }
+  .service:hover{ border-color:var(--color-black); color:var(--color-black); background:rgba(0,0,0,.04); }
+  .service svg{ flex:none; opacity:0; transform:translateX(-5px); transition:opacity .2s ease,transform .2s ease; }
+  .service:hover svg{ opacity:1; transform:translateX(0); }
+
+  /* Mobile menu items — 24px, 20% below the 30px h2-caps they replaced. The
+     Instagram row is set at the same size as the rest of the menu. */
+  .menu-item{
+    font-family:var(--font-display);
+    font-weight:500; line-height:1.15; letter-spacing:.02em;
+    text-transform:uppercase; font-size:24px; color:var(--color-charcoal);
+    display:flex; align-items:center; gap:12px;
+    transition:color .2s ease;
+  }
+  .menu-item:hover{ color:var(--color-black); }
+
+  /* Gallery buttons — compact outlined buttons in the secondary-button
+     language (hairline charcoal border, 2px radius, tracked caps). Each group
+     is one line: label in the margin, buttons wrapping beside it. Hover
+     inverts to black. */
+  .gal-group{ display:grid; gap:8px; }
+  @media (min-width:1360px){ .gal-group{ grid-template-columns:80px minmax(0,1fr); gap:0 12px; align-items:center; } }
+  .gal-group ul{ display:flex; flex-wrap:wrap; gap:6px; }
+  .gal-link{
+    display:inline-flex; align-items:center; gap:6px; white-space:nowrap;
+    padding:9px 11px;
+    border:1px solid var(--color-charcoal); border-radius:2px;
+    font-size:12px; font-weight:600; letter-spacing:.8px; text-transform:uppercase; line-height:1.4;
+    color:var(--color-charcoal);
+    transition:background .2s ease,color .2s ease,border-color .2s ease;
+  }
+  .gal-link svg{ flex:none; width:11px; height:11px; transition:transform .3s cubic-bezier(.22,1,.36,1); }
+  /* Three buttons per row have to fit a 342px phone column (and the narrow
+     half-column on tablets): label stacks above, tighter type, no arrows. */
+  @media (max-width:1359px){
+    .gal-group ul{ flex-wrap:nowrap; gap:6px; }
+    .gal-link{ font-size:11px; letter-spacing:.5px; padding:8px 9px; white-space:nowrap; }
+    .gal-link svg{ display:none; }
+  }
+  .gal-link:hover{ background:var(--color-black); border-color:var(--color-black); color:var(--color-white); }
+  .gal-link:hover svg{ transform:translate(2px,-2px); }
+
+  /* Quiet text CTA — tracked label on a hairline, arrow nudges on hover */
+  .text-cta{
+    display:inline-flex; align-items:center; gap:8px;
+    font-size:13px; font-weight:600; letter-spacing:1px; text-transform:uppercase; line-height:1.5;
+    color:var(--color-black);
+    padding-bottom:4px; border-bottom:1px solid currentColor;
+    transition:opacity .2s ease;
+  }
+  .text-cta svg{ flex:none; transition:transform .35s cubic-bezier(.22,1,.36,1); }
+  .text-cta:hover svg{ transform:translate(3px,-3px); }
+  @media (prefers-reduced-motion:reduce){ .gal-link svg,.text-cta svg{ transition:none; } }
+
+  /* Footer contact links — icon + underlined label, both icons the same size */
+  .foot-link{
+    display:inline-flex; align-items:center; gap:9px;
+    font-size:16px; line-height:1.5; color:var(--color-charcoal);
+    transition:color .2s ease;
+  }
+  .foot-link:hover{ color:var(--color-black); }
+  .foot-link svg{ flex:none; }
+
+  /* Footer wordmark carries its own copyright mark, set like a ® */
+  .copy{
+    font-family:var(--font-ui); font-style:normal;
+    font-size:13px; font-weight:500; letter-spacing:1px;
+    vertical-align:super; margin-left:.45em;
+    color:rgba(42,42,42,.62);
+  }
+
+  /* FAQ — native <details> so it is keyboard accessible and closed by default
+     without any JS. Same border/radius language as the .service boxes. */
+  .faq{ border:1px solid var(--color-mist); border-radius:2px; background:var(--color-white); }
+  .faq + .faq{ margin-top:8px; }
+  .faq summary{
+    list-style:none; cursor:pointer;
+    display:flex; align-items:center; justify-content:space-between; gap:16px;
+    padding:15px 16px;
+    font-size:13px; font-weight:600; letter-spacing:1px; text-transform:uppercase;
+    line-height:1.45;
+    transition:color .2s ease;
+  }
+  .faq summary::-webkit-details-marker{ display:none; }
+  .faq summary::marker{ content:''; }
+  .faq summary:hover,.faq[open] summary{ color:var(--color-black); }
+  .faq .ind{ position:relative; width:11px; height:11px; flex:none; }
+  .faq .ind::before,.faq .ind::after{ content:''; position:absolute; background:currentColor; }
+  .faq .ind::before{ left:0; top:5px; width:11px; height:1px; }
+  .faq .ind::after{ left:5px; top:0; width:1px; height:11px; transition:opacity .2s ease; }
+  .faq[open] .ind::after{ opacity:0; }
+  .faq-body{ padding:0 16px 16px; font-size:14px; line-height:1.7; color:rgba(42,42,42,.78); }
+  .faq-todo{ color:rgba(42,42,42,.62); font-style:italic; }
+
+  .meta{ font-size:13px; font-weight:400; line-height:1.5; }
+  .meta a{ transition:color .2s ease; }
+  .meta a:hover{ color:var(--color-black); }
+
+  @media (max-width:767px){
+    .wordmark{ font-size:16.5vw; line-height:.8; margin-top:0; white-space:normal; }
+  }
+
+  /* ==========================================================================
+     TABLET — 768px to 1279px. The desktop layout assumed ~1440px: three About
+     columns, 94px gutters and viewport-tall photographs all collapse on an
+     iPad. This block gives tablets their own composition.
+     ========================================================================== */
+  @media (min-width:768px) and (max-width:1279px){
+    .hero-photo-copy{ padding:0 48px 48px; }
+
+    /* O mně: portrait beside the text, services as one row underneath */
+    .about-grid{ grid-template-columns:minmax(0,5fr) minmax(0,7fr); align-items:center; }
+    .about-grid > img{ grid-column:1; grid-row:1; }
+    .about-grid > div:first-child{ grid-column:2; grid-row:1; }
+    .about-grid > div:last-child{ grid-column:1 / -1; }
+
+    /* Full-height band: frames keep a 2:3 shape instead of a full screen each */
+    #portfolio img{ height:auto; min-height:0; aspect-ratio:2/3; }
+  }
+  /* Portrait tablets: a full-screen hero would crop the wide photograph to a
+     sliver, so the picture is shown whole and the headline rises into its fade,
+     as on phones. */
+  @media (min-width:768px) and (max-width:1279px) and (orientation:portrait){
+    .hero-photo{ height:auto; min-height:0; padding-top:64px; overflow:visible; }
+    .hero-photo img{
+      position:static; height:auto; aspect-ratio:3/2;
+      -webkit-mask-image:linear-gradient(to bottom,#000 68%,transparent 97%);
+      mask-image:linear-gradient(to bottom,#000 68%,transparent 97%);
+    }
+    .hero-photo-copy{ position:relative; margin-top:-72px; padding:0 48px 72px; }
+  }
+</style>
+</head>
+<body class="antialiased">
+
+<!-- ==================== HERO ==================== -->
+<header id="top" class="hero-photo">
+  <picture>
+    <source media="(max-width:767px)" srcset="upload/full-width/main-page-mobile.webp" width="1280" height="1280">
+    <img src="upload/full-width/main-page.webp" width="1920" height="1280" fetchpriority="high"
+         alt="Svatebčané slaví na terase s výhledem na zámek v Českém Krumlově">
+  </picture>
+  <div class="hero-photo-copy">
+    <h1 class="h1">Svatební a portrétní<br>fotografka</h1>
+    <div class="hero-actions">
+      <a href="#svatby" class="btn-primary">Svatební focení</a>
+      <a href="#portrety" class="btn-secondary">Portréty a rodina</a>
+    </div>
+  </div>
+</header>
+
+<!-- ==================== O MNĚ ====================
+     Three columns on desktop — who she is / her portrait / what she shoots —
+     collapsing to a single stack in the same reading order on mobile.
+     ================================================================== -->
+<section id="o-mne" class="about relative overflow-hidden py-[96px] md:py-[96px] xl:py-[140px]">
+  <span class="about-dots" aria-hidden="true"></span>
+
+  <div class="relative px-6 md:px-[48px] xl:px-[94px]">
+    <div class="about-grid grid gap-12 md:gap-[48px] xl:gap-[56px] xl:grid-cols-[minmax(0,1fr)_minmax(280px,360px)_minmax(0,1fr)] xl:items-center max-w-[1440px] mx-auto">
+
+      <!-- who she is -->
+      <div>
+        <p class="label" style="color:rgba(42,42,42,.62)">O mně</p>
+        <h2 class="h2 mt-4">Fotím srdcem,<br>edituji s citem</h2>
+        <p class="body mt-6">Jmenuji se Martina Hladká a věnuji se fotografii svateb, párů, rodin i firemních akcí.</p>
+        <p class="body mt-4">Při focení je pro mě důležité, aby výsledné fotografie působily přirozeně a odpovídaly tomu, jací skutečně jste. Nechci vás stavět do nepřirozených póz ani zbytečně zasahovat do situací, které fungují samy o sobě.</p>
+        <p class="body mt-4">Všímám si detailů, vztahů mezi lidmi a momentů, které často vzniknou mimo hlavní dění. Právě ty bývají na fotografiích nejcennější.</p>
+        <p class="signature mt-8">Martina</p>
+      </div>
+
+      <!-- her portrait -->
+      <img class="img-rounded w-full max-w-[420px] md:max-w-none aspect-[4/5] object-cover mx-auto"
+           src="upload/fotograf/mh_fotka.webp" alt="Martina Hladká s fotoaparátem" width="360" height="450">
+
+      <!-- what she shoots -->
+      <div>
+        <p class="label" style="color:rgba(42,42,42,.62)">Co fotím</p>
+        <ul class="mt-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-1 gap-2">
+          <li><a class="service" href="#svatby">Svatební focení<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg></a></li>
+          <li><a class="service" href="#portrety">Portréty a rodina<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg></a></li>
+          <li><a class="service" href="#galerie">Firemní akce<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg></a></li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ==================== PORTFOLIO ====================
+     Three full-height frames, edge to edge — the photographs carry the page
+     here, so nothing else competes with them.
+     =============================================================== -->
+<section id="portfolio" aria-label="Ukázky z portfolia" class="grid grid-cols-1 md:grid-cols-3 gap-[10px] p-[10px]">
+  <img class="img-rounded w-full h-[62vh] min-h-[380px] md:h-[calc(100vh-64px)] object-cover"
+       src="upload/full_height/fh_1.webp" alt="Nevěsta při přípravách" loading="lazy">
+  <img class="img-rounded w-full h-[62vh] min-h-[380px] md:h-[calc(100vh-64px)] object-cover"
+       src="upload/full_height/fh_2.webp" alt="Svatební pár v krajině" loading="lazy">
+  <img class="img-rounded w-full h-[62vh] min-h-[380px] md:h-[calc(100vh-64px)] object-cover"
+       src="upload/full_height/fh_3.webp" alt="Novomanželé slaví s výhledem na město" loading="lazy">
+  <img class="img-rounded hidden md:block w-full h-[62vh] min-h-[380px] md:h-[calc(100vh-64px)] object-cover"
+       src="upload/full_height/fh_4.webp" alt="Detail ze svatebního dne" loading="lazy">
+  <img class="img-rounded hidden md:block w-full h-[62vh] min-h-[380px] md:h-[calc(100vh-64px)] object-cover"
+       src="upload/full_height/fh_5.webp" alt="Svatební hosté" loading="lazy">
+  <img class="img-rounded hidden md:block w-full h-[62vh] min-h-[380px] md:h-[calc(100vh-64px)] object-cover"
+       src="upload/full_height/fh_6.webp" alt="Novomanželé při oslavě" loading="lazy">
+</section>
+
+<!-- ==================== COLLECTIONS ====================
+     Rebuilt as two editorial spreads: numbered eyebrow, serif heading, lead,
+     a hairline spec list carrying the concrete details, and one black CTA.
+     Blocks mirror each other so the photography alternates sides.
+     ======================================================================= -->
+<section aria-label="Balíčky focení">
+
+  <!-- Svatby -->
+  <article id="svatby" class="grid md:grid-cols-2 items-stretch">
+    <div class="flex items-center px-6 py-[72px] md:py-[80px] xl:py-[112px] md:pl-[48px] xl:pl-[94px] md:pr-[40px] xl:pr-[72px]">
+      <div class="w-full max-w-[460px]">
+        <p class="label" style="color:rgba(42,42,42,.62)">Svatby</p>
+        <h2 class="h2-caps mt-4">Svatební focení</h2>
+        <p class="body mt-6">Dva rozsahy podle toho, jak dlouhý je váš den. Součástí obou je předsvatební setkání, klidná práce bez pózování a online galerie, ze které si fotografie stáhnete i sdílíte s hosty.</p>
+
+        <div class="mt-10" style="border-top:1px solid var(--color-mist)">
+        <div class="py-6" style="border-bottom:1px solid var(--color-mist)">
+          <div class="flex items-baseline justify-between gap-6">
+            <h4 class="h3">Celodenní focení</h4>
+            <p class="price">20 000 Kč</p>
+          </div>
+          <ul class="pkg-list mt-3">
+            <li>předsvatební setkání</li>
+            <li>10 hodin focení</li>
+            <li>min. 500 upravených fotografií</li>
+            <li>online galerie</li>
+          </ul>
+        </div>
+        <div class="py-6" style="border-bottom:1px solid var(--color-mist)">
+          <div class="flex items-baseline justify-between gap-6">
+            <h4 class="h3">Půldenní focení</h4>
+            <p class="price">14 000 Kč</p>
+          </div>
+          <ul class="pkg-list mt-3">
+            <li>předsvatební setkání</li>
+            <li>6 hodin focení</li>
+            <li>min. 300 upravených fotografií</li>
+            <li>online galerie</li>
+          </ul>
+        </div>
+        </div>
+
+        <a href="mailto:m.pelclova@gmail.com?subject=Popt%C3%A1vka%20svatebn%C3%ADho%20focen%C3%AD&body=Ahoj%20Martino%2C%0A%0Am%C3%A1me%20z%C3%A1jem%20o%20svatebn%C3%AD%20focen%C3%AD%20a%20r%C3%A1di%20bychom%20se%20zeptali%20na%20dostupnost.%0A%0ATerm%C3%ADn%20svatby%3A%0AM%C3%ADsto%3A%0A%0AD%C4%9Bkujeme." class="btn-primary mt-10">Nezávazná poptávka</a>
+      </div>
+    </div>
+    <div class="hidden md:block relative min-h-[420px] md:min-h-[680px] order-first md:order-none">
+      <img class="absolute inset-0 w-full h-full object-cover"
+           src="upload/svatby/mh_houpacka.webp" alt="Novomanželé na houpačce pod stromem" loading="lazy">
+    </div>
+  </article>
+
+  <!-- Portréty (mirrored) -->
+  <article id="portrety" class="grid md:grid-cols-2 items-stretch">
+    <div class="relative min-h-[420px] md:min-h-[680px] md:order-first">
+      <img class="stand-in absolute inset-0 w-full h-full object-cover"
+           src="upload/svatby/mh_portrety.webp" alt="Portrétní focení" loading="lazy">
+    </div>
+    <div class="flex items-center px-6 py-[72px] md:py-[80px] xl:py-[112px] md:pr-[48px] xl:pr-[94px] md:pl-[40px] xl:pl-[72px]">
+      <div class="w-full max-w-[460px]">
+        <p class="label" style="color:rgba(42,42,42,.62)">Portréty</p>
+        <h2 class="h2-caps mt-4">Portréty<br>&amp; rodina</h2>
+        <p class="body mt-6">Focení pro páry, rodiny i jednotlivce. V ateliéru nebo na místě, které pro vás něco znamená — přirozené světlo, klidné tempo a žádné pózování.</p>
+
+        <div class="mt-10" style="border-top:1px solid var(--color-mist)">
+        <div class="py-6" style="border-bottom:1px solid var(--color-mist)">
+          <div class="flex items-baseline justify-between gap-6">
+            <h4 class="h3">Ateliérové focení</h4>
+            <p class="price">5 000 Kč</p>
+          </div>
+          <ul class="pkg-list mt-3">
+            <li>1 hodina focení</li>
+            <li>pronájem ateliéru</li>
+            <li>15 upravených fotografií</li>
+            <li>pomoc s vizáží</li>
+          </ul>
+        </div>
+        <div class="py-6" style="border-bottom:1px solid var(--color-mist)">
+          <div class="flex items-baseline justify-between gap-6">
+            <h4 class="h3">Venkovní focení</h4>
+            <p class="price">3 000 Kč</p>
+          </div>
+          <ul class="pkg-list mt-3">
+            <li>1 hodina focení</li>
+            <li>lokace dle domluvy</li>
+            <li>15 upravených fotografií</li>
+            <li>pomoc s vizáží</li>
+          </ul>
+        </div>
+        </div>
+
+        <a href="mailto:m.pelclova@gmail.com?subject=Popt%C3%A1vka%20focen%C3%AD%20portr%C3%A9t%C5%AF%20a%20rodiny&body=Ahoj%20Martino%2C%0A%0Am%C3%A1me%20z%C3%A1jem%20o%20focen%C3%AD%20a%20r%C3%A1di%20bychom%20se%20zeptali%20na%20dostupnost.%0A%0ATyp%20focen%C3%AD%3A%0APreferovan%C3%BD%20term%C3%ADn%3A%0AM%C3%ADsto%3A%0A%0AD%C4%9Bkujeme." class="btn-primary mt-10">Domluvit termín</a>
+      </div>
+    </div>
+  </article>
+
+</section>
+
+<!-- ==================== GALERIE + FAQ ====================
+     Photograph holds the right half; the left half stacks the gallery boxes
+     over the FAQ. Same box language as "Co fotím" so the indexes read as one
+     system. Accordions are native <details> — closed by default, no JS.
+     ==================================================================== -->
+<section id="galerie" style="background:var(--color-mist)">
+
+  <div class="grid md:grid-cols-2 items-stretch">
+    <div class="px-6 md:pl-[48px] xl:pl-[94px] md:pr-[40px] xl:pr-[72px] py-[80px] md:py-[112px]">
+      <p class="label" style="color:rgba(42,42,42,.62)">Galerie</p>
+      <h2 class="h2 mt-2">Nahlédněte do celých galerií</h2>
+
+      <div class="mt-8 grid gap-4 max-w-[560px]">
+        <div class="gal-group">
+          <p class="label" style="color:rgba(42,42,42,.62)">Svatby</p>
+          <ul>
+            <li><a class="gal-link" href="https://martinahladka.pixin.gallery/sa/h=2jtdc4adio" target="_blank" rel="noopener">Tomáš a Lucka<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></a></li>
+            <li><a class="gal-link" href="https://martinahladka.pixin.gallery/sa/h=ck2obcxc5g" target="_blank" rel="noopener">Martin a Barbora<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></a></li>
+            <li><a class="gal-link" href="https://martinahladka.pixin.gallery/" target="_blank" rel="noopener">Více<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></a></li>
+          </ul>
+        </div>
+
+        <div class="gal-group">
+          <p class="label" style="color:rgba(42,42,42,.62)">Portréty</p>
+          <ul>
+            <li><a class="gal-link" href="https://martinahladka.pixin.gallery/sa/h=pyzhm3e2bu" target="_blank" rel="noopener">Lucka outdoor<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></a></li>
+            <li><a class="gal-link" href="https://martinahladka.pixin.gallery/detail-prezentacni-galerie/id=194152" target="_blank" rel="noopener">Martina indoor<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></a></li>
+            <li><a class="gal-link" href="https://martinahladka.pixin.gallery/" target="_blank" rel="noopener">Více<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></a></li>
+          </ul>
+        </div>
+
+        <div class="gal-group">
+          <p class="label" style="color:rgba(42,42,42,.62)">Ostatní</p>
+          <ul>
+            <li><a class="gal-link" href="https://martinahladka.pixin.gallery/sa/h=2jtdc4adio" target="_blank" rel="noopener">Akce Legitas<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></a></li>
+            <li><a class="gal-link" href="https://martinahladka.pixin.gallery/sa/h=ck2obcxc5g" target="_blank" rel="noopener">Výstava Jesus<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></a></li>
+            <li><a class="gal-link" href="https://martinahladka.pixin.gallery/" target="_blank" rel="noopener">Více<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div id="faq" class="mt-4 md:mt-5">
+
+      <p class="label" style="color:rgba(42,42,42,.62)">Časté dotazy</p>
+      <div class="mt-4">
+        <details class="faq">
+        <summary>Jak probíhá rezervace termínu?<span class="ind" aria-hidden="true"></span></summary>
+        <!-- TODO: doplnit odpověď od Martiny -->
+        <div class="faq-body"><span class="faq-todo">Doplnit odpověď.</span></div>
+        </details>
+        <details class="faq">
+        <summary>Co všechno je v ceně focení?<span class="ind" aria-hidden="true"></span></summary>
+        <!-- TODO: doplnit odpověď od Martiny -->
+        <div class="faq-body"><span class="faq-todo">Doplnit odpověď.</span></div>
+        </details>
+        <details class="faq">
+        <summary>Kdy dostanu hotové fotografie?<span class="ind" aria-hidden="true"></span></summary>
+        <!-- TODO: doplnit odpověď od Martiny -->
+        <div class="faq-body"><span class="faq-todo">Doplnit odpověď.</span></div>
+        </details>
+      </div>
+      </div>
+    </div>
+
+    <div class="relative min-h-[420px] md:min-h-[680px]">
+      <img class="absolute inset-0 w-full h-full object-cover"
+           src="upload/svatby/mh_galerie.webp" alt="Svatební hosté při oslavě" loading="lazy">
+    </div>
+  </div>
+
+</section>
+
+<!-- ==================== TESTIMONIALS ==================== -->
+<section aria-label="Reference" class="about px-4 md:px-6 py-[100px] md:py-[140px]">
+  <div class="max-w-[1140px] mx-auto flex items-center gap-3 md:gap-12">
+    <button type="button" class="slider-arrow" data-slider="prev" aria-label="Předchozí reference">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>
+    </button>
+
+    <div class="flex-1 text-center">
+      <article class="testimonial">
+        <h2 class="h2">Klára &amp; Tomáš</h2>
+        <p class="body max-w-[740px] mx-auto mt-6">Martinu bychom doporučili každému páru. Byla neuvěřitelně milá a pozorná k celé rodině a do své práce vložila tolik <strong class="font-semibold">lásky a energie</strong>. Její styl je něčím vzácný — má naprosto výjimečné oko. S manželem jsme z fotek nadšení a kromě skvělé fotografky jsme získali i kamarádku.</p>
+        <p class="mt-6"><a class="text-cta" href="https://martinahladka.pixin.gallery/sa/h=ck2obcxc5g" target="_blank" rel="noopener">Zobrazit galerii<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></a></p>
+      </article>
+      <article class="testimonial" hidden>
+        <h2 class="h2">Anna &amp; Petr</h2>
+        <p class="body max-w-[740px] mx-auto mt-6">Celý den byla přítomná, ale nikdy nebyla vidět. Fotky nám vrací přesně tu <strong class="font-semibold">atmosféru a emoce</strong>, na které si pamatujeme — smích v zákulisí, ticho před obřadem, poslední tanec. Nic zinscenovaného, jen náš den takový, jaký doopravdy byl.</p>
+        <p class="mt-6"><a class="text-cta" href="https://martinahladka.pixin.gallery/sa/h=pyzhm3e2bu" target="_blank" rel="noopener">Zobrazit galerii<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></a></p>
+      </article>
+      <article class="testimonial" hidden>
+        <h2 class="h2">Eliška &amp; Jakub</h2>
+        <p class="body max-w-[740px] mx-auto mt-6">Od první konzultace jsme věděli, že jsme ve správných rukou. Martina má klid, který se přenese na celou svatbu, a <strong class="font-semibold">citlivý pohled</strong>, díky kterému vypadá i obyčejný okamžik jako vzpomínka. Snímky na film jsou pro nás to nejcennější, co nám ze dne zůstalo.</p>
+        <p class="mt-6"><a class="text-cta" href="https://martinahladka.pixin.gallery/detail-prezentacni-galerie/id=194152" target="_blank" rel="noopener">Zobrazit galerii<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></a></p>
+      </article>
+    </div>
+
+    <button type="button" class="slider-arrow" data-slider="next" aria-label="Další reference">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg>
+    </button>
+  </div>
+</section>
+
+<!-- ==================== FOOTER ==================== -->
+<footer id="kontakt" class="px-6 md:px-[48px] xl:px-6 pt-[80px] pb-[80px]" style="border-top:1px solid var(--color-mist)">
+  <div class="max-w-[1240px] mx-auto flex flex-col md:flex-row md:items-end md:justify-between gap-10">
+
+    <p class="signature">Fotografka Martina<span class="copy">© 2026</span></p>
+
+    <div class="md:text-right">
+      <p><a class="foot-link" href="mailto:m.pelclova@gmail.com"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="5" width="19" height="14" rx="2.5"/><path d="m3.2 7.2 8.8 5.9 8.8-5.9"/></svg><span>m.pelclova@gmail.com</span></a></p>
+      <p class="mt-4"><a class="foot-link" href="https://www.instagram.com/martinahladka_fotograf/" target="_blank" rel="noopener"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1.1" fill="currentColor" stroke="none"/></svg><span>@martinahladka_fotograf</span></a></p>
+    </div>
+
+  </div>
+</footer>
+
+<!-- ==================== FIXED TOP BAR ==================== -->
+<header class="top-bar fixed top-0 left-0 right-0 z-40">
+  <div class="flex items-center justify-between px-6 md:px-8 h-[64px]">
+    <a href="#top" class="signature" aria-label="Fotografka Martina — nahoru">Fotografka Martina</a>
+
+    <!-- desktop nav -->
+    <nav class="hidden lg:flex items-center gap-8" aria-label="Hlavní navigace">
+      <a class="nav-link" href="#top">Domů</a>
+      <a class="nav-link" href="#o-mne">O mně</a>
+      <a class="nav-link" href="#svatby">Svatby</a>
+      <a class="nav-link" href="#portrety">Portréty</a>
+      <a class="nav-link" href="#galerie">Galerie</a>
+      <a class="nav-link" href="#kontakt">Kontakt</a>
+      <a class="nav-link flex items-center" href="https://www.instagram.com/martinahladka_fotograf/" target="_blank" rel="noopener" aria-label="Instagram"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1.1" fill="currentColor" stroke="none"/></svg></a>
+    </nav>
+
+    <!-- mobile trigger -->
+    <button type="button" class="nav-link lg:hidden flex items-center" data-menu="open" aria-expanded="false" aria-controls="mobile-menu" aria-label="Otevřít menu">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M3 7h18M3 12h18M3 17h18"/></svg>
+    </button>
+  </div>
+</header>
+
+<!-- mobile menu overlay -->
+<div id="mobile-menu" class="fixed inset-0 z-50 lg:hidden hidden" style="background:var(--color-paper)">
+  <div class="flex items-center justify-between px-6 h-[64px]">
+    <span class="signature">Fotografka Martina</span>
+    <button type="button" class="nav-link flex items-center" data-menu="close" aria-label="Zavřít menu">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+  </div>
+  <nav class="px-6 pt-[40px] flex flex-col gap-7" aria-label="Mobilní navigace">
+    <a class="menu-item" href="#top">Domů</a>
+    <a class="menu-item" href="#o-mne">O mně</a>
+    <a class="menu-item" href="#svatby">Svatby</a>
+    <a class="menu-item" href="#portrety">Portréty</a>
+    <a class="menu-item" href="#galerie">Galerie</a>
+    <a class="menu-item" href="#kontakt">Kontakt</a>
+    <a class="menu-item" href="https://www.instagram.com/martinahladka_fotograf/" target="_blank" rel="noopener"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1.1" fill="currentColor" stroke="none"/></svg>Instagram</a>
+  </nav>
+</div>
+
+<script>
+  // Testimonial slider
+  (function () {
+    var items = Array.prototype.slice.call(document.querySelectorAll('.testimonial'));
+    var i = 0;
+    function show(n) {
+      i = (n + items.length) % items.length;
+      items.forEach(function (el, idx) { el.hidden = idx !== i; });
+    }
+    document.querySelector('[data-slider="prev"]').addEventListener('click', function () { show(i - 1); });
+    document.querySelector('[data-slider="next"]').addEventListener('click', function () { show(i + 1); });
+  })();
+
+  // One-pager scroll spy — drives the [aria-current] state in the nav
+  (function () {
+    var ids = ['top', 'o-mne', 'svatby', 'portrety', 'galerie', 'kontakt'];
+    var links = {};
+    ids.forEach(function (id) {
+      links[id] = Array.prototype.slice.call(document.querySelectorAll('a[href="#' + id + '"]'));
+    });
+    var sections = ids.map(function (id) { return document.getElementById(id); }).filter(Boolean);
+    function update() {
+      var mark = sections[0], line = 64 + 80;
+      sections.forEach(function (el) { if (el.getBoundingClientRect().top <= line) mark = el; });
+      var doc = document.documentElement;
+      if (window.innerHeight + window.scrollY >= doc.scrollHeight - 4) mark = sections[sections.length - 1];
+      ids.forEach(function (id) {
+        links[id].forEach(function (a) {
+          if (id === mark.id) { a.setAttribute('aria-current', 'page'); }
+          else { a.removeAttribute('aria-current'); }
+        });
+      });
+    }
+    window.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update);
+    update();
+  })();
+
+  // Mobile menu
+  (function () {
+    var menu = document.getElementById('mobile-menu');
+    var trigger = document.querySelector('[data-menu="open"]');
+    function set(open) {
+      menu.classList.toggle('hidden', !open);
+      trigger.setAttribute('aria-expanded', String(open));
+      document.body.style.overflow = open ? 'hidden' : '';
+    }
+    trigger.addEventListener('click', function () { set(true); });
+    document.querySelector('[data-menu="close"]').addEventListener('click', function () { set(false); });
+    menu.addEventListener('click', function (e) { if (e.target.tagName === 'A') set(false); });
+  })();
+</script>
+
+</body>
+</html>
