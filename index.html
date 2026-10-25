@@ -191,7 +191,11 @@
   img{ border-radius:0; }
   .img-rounded{ border-radius:4px; }
 
-  .testimonial[hidden]{ display:none; }
+  /* Slides share one grid cell, so the slider is always as tall as the longest
+     quote and the arrows and the sections below never jump between slides. */
+  .testimonial-stage{ display:grid; }
+  .testimonial{ grid-area:1/1; align-self:center; }
+  .testimonial[hidden]{ display:block; visibility:hidden; }
 
   ::selection{ background:var(--color-mist); color:var(--color-charcoal); }
 
@@ -226,7 +230,7 @@
      the paper along its lower edge; the headline rises into that dissolve so
      picture and type read as one piece, then two full-width buttons. */
   .hero-photo img{
-    display:block; width:100%; aspect-ratio:1/1; object-fit:cover; object-position:center bottom; border-radius:0;
+    display:block; width:100%; aspect-ratio:921/1280; object-fit:cover; object-position:center bottom; border-radius:0;
     -webkit-mask-image:linear-gradient(to bottom,#000 70%,transparent 97%);
     mask-image:linear-gradient(to bottom,#000 70%,transparent 97%);
   }
@@ -331,29 +335,20 @@
   }
   .menu-item:hover{ color:var(--color-black); }
 
-  /* Gallery buttons — compact outlined buttons in the secondary-button
-     language (hairline charcoal border, 2px radius, tracked caps). Each group
-     is one line: label in the margin, buttons wrapping beside it. Hover
-     inverts to black. */
-  .gal-group{ display:grid; gap:8px; }
-  @media (min-width:1360px){ .gal-group{ grid-template-columns:80px minmax(0,1fr); gap:0 12px; align-items:center; } }
-  .gal-group ul{ display:flex; flex-wrap:wrap; gap:6px; }
+  /* Gallery links — each category is a small serif heading with its galleries
+     as a row of buttons underneath. Buttons take the width of their own name,
+     so short initials stay compact and longer titles get the room they need;
+     the row wraps on narrow screens instead of running off the edge. */
+  .gal-group ul{ display:flex; flex-wrap:wrap; gap:8px; margin-top:12px; }
   .gal-link{
-    display:inline-flex; align-items:center; gap:6px; white-space:nowrap;
-    padding:9px 11px;
+    display:inline-flex; align-items:center; gap:10px;
+    padding:10px 16px; white-space:nowrap;
     border:1px solid var(--color-charcoal); border-radius:2px;
-    font-size:12px; font-weight:600; letter-spacing:.8px; text-transform:uppercase; line-height:1.4;
+    font-size:14px; font-weight:500; line-height:1.4;
     color:var(--color-charcoal);
     transition:background .2s ease,color .2s ease,border-color .2s ease;
   }
-  .gal-link svg{ flex:none; width:11px; height:11px; transition:transform .3s cubic-bezier(.22,1,.36,1); }
-  /* Three buttons per row have to fit a 342px phone column (and the narrow
-     half-column on tablets): label stacks above, tighter type, no arrows. */
-  @media (max-width:1359px){
-    .gal-group ul{ flex-wrap:nowrap; gap:6px; }
-    .gal-link{ font-size:11px; letter-spacing:.5px; padding:8px 9px; white-space:nowrap; }
-    .gal-link svg{ display:none; }
-  }
+  .gal-link svg{ flex:none; width:12px; height:12px; transition:transform .3s cubic-bezier(.22,1,.36,1); }
   .gal-link:hover{ background:var(--color-black); border-color:var(--color-black); color:var(--color-white); }
   .gal-link:hover svg{ transform:translate(2px,-2px); }
 
@@ -387,27 +382,82 @@
   }
 
   /* FAQ — native <details> so it is keyboard accessible and closed by default
-     without any JS. Same border/radius language as the .service boxes. */
-  .faq{ border:1px solid var(--color-mist); border-radius:2px; background:var(--color-white); }
-  .faq + .faq{ margin-top:8px; }
+     without any JS. Questions read as sentences (sentence case, 16px, not tracked
+     capitals), each row has real breathing room, and an open answer sits under a
+     hairline at a comfortable 15px / 1.75 measure. */
+  .faq{ border:1px solid var(--color-mist); border-radius:2px; background:var(--color-white); transition:border-color .25s ease; }
+  .faq + .faq{ margin-top:12px; }
+  .faq[open]{ border-color:rgba(42,42,42,.4); }
   .faq summary{
     list-style:none; cursor:pointer;
-    display:flex; align-items:center; justify-content:space-between; gap:16px;
-    padding:15px 16px;
-    font-size:13px; font-weight:600; letter-spacing:1px; text-transform:uppercase;
-    line-height:1.45;
+    display:flex; align-items:flex-start; justify-content:space-between; gap:24px;
+    padding:20px 20px;
+    font-size:16px; font-weight:500; line-height:1.45; text-wrap:balance;
+    color:var(--color-charcoal);
     transition:color .2s ease;
   }
   .faq summary::-webkit-details-marker{ display:none; }
   .faq summary::marker{ content:''; }
   .faq summary:hover,.faq[open] summary{ color:var(--color-black); }
-  .faq .ind{ position:relative; width:11px; height:11px; flex:none; }
+  .faq .ind{ position:relative; width:12px; height:12px; flex:none; margin-top:.5em; }
   .faq .ind::before,.faq .ind::after{ content:''; position:absolute; background:currentColor; }
-  .faq .ind::before{ left:0; top:5px; width:11px; height:1px; }
-  .faq .ind::after{ left:5px; top:0; width:1px; height:11px; transition:opacity .2s ease; }
+  .faq .ind::before{ left:0; top:5.5px; width:12px; height:1px; }
+  .faq .ind::after{ left:5.5px; top:0; width:1px; height:12px; transition:opacity .2s ease; }
   .faq[open] .ind::after{ opacity:0; }
-  .faq-body{ padding:0 16px 16px; font-size:14px; line-height:1.7; color:rgba(42,42,42,.78); }
+  .faq-body{
+    margin:0 20px; padding:18px 0 22px;
+    border-top:1px solid var(--color-mist);
+    font-size:15px; line-height:1.75; color:rgba(42,42,42,.86);
+    animation:faq-in .3s ease;
+  }
+  @keyframes faq-in{ from{ opacity:0; transform:translateY(-4px); } to{ opacity:1; transform:none; } }
+  @media (prefers-reduced-motion:reduce){ .faq-body{ animation:none; } }
+  @media (min-width:768px){ .faq summary{ padding:22px 24px; } .faq-body{ margin:0 24px; } }
+  .faq-body p + p{ margin-top:14px; }
+  /* Emphasis: one semibold weight, black, used sparingly across the site */
+  .body strong,.faq-body strong,.guide-list strong{ font-weight:600; color:var(--color-black); }
   .faq-todo{ color:rgba(42,42,42,.62); font-style:italic; }
+
+  /* Generic modal — opened by any [data-modal-open] trigger, closed by the
+     backdrop, the × button, or Escape. Centred paper card, modal-weight shadow. */
+  .modal{ position:fixed; inset:0; z-index:60; display:flex; align-items:center; justify-content:center; padding:24px; }
+  .modal[hidden]{ display:none; }
+  .modal-backdrop{ position:absolute; inset:0; background:rgba(42,42,42,.45); }
+  .modal-panel{
+    position:relative; width:100%; max-width:480px; overflow:hidden;
+    background:var(--color-paper); border-radius:4px; box-shadow:var(--shadow-modal);
+  }
+  /* The panel itself never scrolls; only .modal-scroll does, so the × stays
+     pinned to the corner at every scroll position. */
+  .modal-scroll{ max-height:calc(100vh - 48px); overflow-y:auto; padding:56px 32px 32px; }
+  .modal-panel--wide{ max-width:846px; }
+  @media (min-width:640px){ .modal-scroll{ padding:56px 48px 48px; } }
+  .modal-close{
+    position:absolute; top:12px; right:12px; z-index:2; color:var(--color-charcoal);
+    background:var(--color-paper); border-radius:2px;
+    display:flex; align-items:center; justify-content:center; width:32px; height:32px;
+    transition:color .2s ease;
+  }
+  .modal-close:hover{ color:var(--color-black); }
+
+  /* Galerie photo on desktop: one screen tall and sticky, so opening FAQ
+     answers lengthens the text column without stretching the picture. */
+  @media (min-width:768px){
+    #galerie .gal-photo{ position:sticky; top:64px; align-self:start; height:calc(100vh - 64px); min-height:0; }
+  }
+
+  /* Long-form reading inside a modal (the styling guide): headings a step
+     below .h3, generous body copy, and a bullet list with the same quiet
+     dot marker as .pkg-list but sized for comfortable reading. */
+  .guide-heading{ font-family:var(--font-display); font-weight:500; font-size:19px; line-height:1.3; color:var(--color-charcoal); }
+  .guide-list{ font-size:16px; line-height:1.7; color:rgba(42,42,42,.85); }
+  .guide-list li{ position:relative; padding-left:18px; }
+  .guide-list li + li{ margin-top:8px; }
+  .guide-list li::before{
+    content:''; position:absolute; left:0; top:.78em;
+    width:3px; height:3px; border-radius:50%;
+    background:rgba(42,42,42,.4);
+  }
 
   .meta{ font-size:13px; font-weight:400; line-height:1.5; }
   .meta a{ transition:color .2s ease; }
@@ -432,7 +482,7 @@
     .about-grid > div:last-child{ grid-column:1 / -1; }
 
     /* Full-height band: frames keep a 2:3 shape instead of a full screen each */
-    #portfolio img{ height:auto; min-height:0; aspect-ratio:2/3; }
+    .photo-band img{ height:auto; min-height:0; aspect-ratio:2/3; }
   }
   /* Portrait tablets: a full-screen hero would crop the wide photograph to a
      sliver, so the picture is shown whole and the headline rises into its fade,
@@ -453,7 +503,7 @@
 <!-- ==================== HERO ==================== -->
 <header id="top" class="hero-photo">
   <picture>
-    <source media="(max-width:767px)" srcset="upload/full-width/main-page-mobile.webp" width="1280" height="1280">
+    <source media="(max-width:767px)" srcset="upload/full-width/main-page-mobile-2.webp" width="921" height="1280">
     <img src="upload/full-width/main-page.webp" width="1920" height="1280" fetchpriority="high"
          alt="Svatebčané slaví na terase s výhledem na zámek v Českém Krumlově">
   </picture>
@@ -480,9 +530,9 @@
       <div>
         <p class="label" style="color:rgba(42,42,42,.62)">O mně</p>
         <h2 class="h2 mt-4">Fotím srdcem,<br>edituji s citem</h2>
-        <p class="body mt-6">Jmenuji se Martina Hladká a věnuji se fotografii svateb, párů, rodin i firemních akcí.</p>
-        <p class="body mt-4">Při focení je pro mě důležité, aby výsledné fotografie působily přirozeně a odpovídaly tomu, jací skutečně jste. Nechci vás stavět do nepřirozených póz ani zbytečně zasahovat do situací, které fungují samy o sobě.</p>
-        <p class="body mt-4">Všímám si detailů, vztahů mezi lidmi a momentů, které často vzniknou mimo hlavní dění. Právě ty bývají na fotografiích nejcennější.</p>
+        <p class="body mt-6">Jmenuji se Martina Hladká a věnuji se fotografii <strong>svateb, párů, rodin i firemních akcí</strong>.</p>
+        <p class="body mt-4">Při focení je pro mě důležité, aby výsledné fotografie <strong>působily přirozeně</strong> a odpovídaly tomu, jací skutečně jste. Nechci vás stavět do nepřirozených póz ani zbytečně zasahovat do situací, které fungují samy o sobě.</p>
+        <p class="body mt-4">Všímám si detailů, vztahů mezi lidmi a momentů, které často vzniknou <strong>mimo hlavní dění</strong>. Právě ty bývají na fotografiích nejcennější.</p>
         <p class="signature mt-8">Martina</p>
       </div>
 
@@ -508,7 +558,7 @@
      Three full-height frames, edge to edge — the photographs carry the page
      here, so nothing else competes with them.
      =============================================================== -->
-<section id="portfolio" aria-label="Ukázky z portfolia" class="grid grid-cols-1 md:grid-cols-3 gap-[10px] p-[10px]">
+<section id="portfolio" aria-label="Ukázky z portfolia" class="photo-band grid grid-cols-1 md:grid-cols-3 gap-[10px] p-[10px]">
   <img class="img-rounded w-full h-[62vh] min-h-[380px] md:h-[calc(100vh-64px)] object-cover"
        src="upload/full_height/fh_1.webp" alt="Nevěsta při přípravách" loading="lazy">
   <img class="img-rounded w-full h-[62vh] min-h-[380px] md:h-[calc(100vh-64px)] object-cover"
@@ -536,7 +586,7 @@
       <div class="w-full max-w-[460px]">
         <p class="label" style="color:rgba(42,42,42,.62)">Svatby</p>
         <h2 class="h2-caps mt-4">Svatební focení</h2>
-        <p class="body mt-6">Dva rozsahy podle toho, jak dlouhý je váš den. Součástí obou je předsvatební setkání, klidná práce bez pózování a online galerie, ze které si fotografie stáhnete i sdílíte s hosty.</p>
+        <p class="body mt-6">Dva rozsahy podle toho, jak dlouhý je váš den. Součástí obou je předsvatební setkání, klidná práce <strong>bez pózování</strong> a online galerie, ze které si fotografie stáhnete i sdílíte s hosty.</p>
 
         <div class="mt-10" style="border-top:1px solid var(--color-mist)">
         <div class="py-6" style="border-bottom:1px solid var(--color-mist)">
@@ -584,7 +634,7 @@
       <div class="w-full max-w-[460px]">
         <p class="label" style="color:rgba(42,42,42,.62)">Portréty</p>
         <h2 class="h2-caps mt-4">Portréty<br>&amp; rodina</h2>
-        <p class="body mt-6">Focení pro páry, rodiny i jednotlivce. V ateliéru nebo na místě, které pro vás něco znamená — přirozené světlo, klidné tempo a žádné pózování.</p>
+        <p class="body mt-6">Focení pro páry, rodiny i jednotlivce. V ateliéru nebo na místě, které pro vás něco znamená — přirozené světlo, klidné tempo a <strong>žádné pózování</strong>.</p>
 
         <div class="mt-10" style="border-top:1px solid var(--color-mist)">
         <div class="py-6" style="border-bottom:1px solid var(--color-mist)">
@@ -620,6 +670,22 @@
 
 </section>
 
+<!-- ==================== PHOTO BAND 2 (copy of the six-photo band) ==================== -->
+<section aria-label="Další ukázky z portfolia" class="photo-band grid grid-cols-1 md:grid-cols-3 gap-[10px] p-[10px]">
+  <img class="img-rounded w-full h-[62vh] min-h-[380px] md:h-[calc(100vh-64px)] object-cover hidden md:block md:order-1"
+       src="upload/full-height-second/fh_1.webp" alt="Svatební detail" loading="lazy">
+  <img class="img-rounded w-full h-[62vh] min-h-[380px] md:h-[calc(100vh-64px)] object-cover order-3 md:order-2"
+       src="upload/full-height-second/fh_2.webp" alt="Svatební okamžik" loading="lazy">
+  <img class="img-rounded w-full h-[62vh] min-h-[380px] md:h-[calc(100vh-64px)] object-cover hidden md:block md:order-3"
+       src="upload/full-height-second/fh_3.webp" alt="Svatební portrét" loading="lazy">
+  <img class="img-rounded w-full h-[62vh] min-h-[380px] md:h-[calc(100vh-64px)] object-cover hidden md:block md:order-4"
+       src="upload/full-height-second/fh_4.webp" alt="Svatební detail" loading="lazy">
+  <img class="img-rounded w-full h-[62vh] min-h-[380px] md:h-[calc(100vh-64px)] object-cover order-2 md:order-5"
+       src="upload/full-height-second/fh_5.webp" alt="Svatební hosté" loading="lazy">
+  <img class="img-rounded w-full h-[62vh] min-h-[380px] md:h-[calc(100vh-64px)] object-cover order-1 md:order-6"
+       src="upload/full-height-second/fh_6.webp" alt="Novomanželé" loading="lazy">
+</section>
+
 <!-- ==================== GALERIE + FAQ ====================
      Photograph holds the right half; the left half stacks the gallery boxes
      over the FAQ. Same box language as "Co fotím" so the indexes read as one
@@ -632,59 +698,91 @@
       <p class="label" style="color:rgba(42,42,42,.62)">Galerie</p>
       <h2 class="h2 mt-2">Nahlédněte do celých galerií</h2>
 
-      <div class="mt-8 grid gap-4 max-w-[560px]">
+      <div class="mt-8 grid gap-8 max-w-[560px]">
         <div class="gal-group">
-          <p class="label" style="color:rgba(42,42,42,.62)">Svatby</p>
+          <h3 class="guide-heading">Svatby</h3>
           <ul>
-            <li><a class="gal-link" href="https://martinahladka.pixin.gallery/sa/h=2jtdc4adio" target="_blank" rel="noopener">Tomáš a Lucka<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></a></li>
-            <li><a class="gal-link" href="https://martinahladka.pixin.gallery/sa/h=ck2obcxc5g" target="_blank" rel="noopener">Martin a Barbora<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></a></li>
-            <li><a class="gal-link" href="https://martinahladka.pixin.gallery/" target="_blank" rel="noopener">Více<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></a></li>
+            <li><a class="gal-link" href="https://martinahladka.pixin.gallery/sa/h=bhnahtdvhj" target="_blank" rel="noopener">D &amp; R<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></a></li>
+            <li><a class="gal-link" href="https://martinahladka.pixin.gallery/sa/h=of7tdvdprb" target="_blank" rel="noopener">D &amp; K<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></a></li>
+            <li><a class="gal-link" href="https://martinahladka.pixin.gallery/sa/h=9mo39tvekq" target="_blank" rel="noopener">A &amp; M<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></a></li>
+            <li><a class="gal-link" href="https://martinahladka.pixin.gallery/sa/h=mipfkj4a9z" target="_blank" rel="noopener">L &amp; P<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></a></li>
           </ul>
         </div>
 
         <div class="gal-group">
-          <p class="label" style="color:rgba(42,42,42,.62)">Portréty</p>
+          <h3 class="guide-heading">Portréty &amp; páry</h3>
           <ul>
-            <li><a class="gal-link" href="https://martinahladka.pixin.gallery/sa/h=pyzhm3e2bu" target="_blank" rel="noopener">Lucka outdoor<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></a></li>
-            <li><a class="gal-link" href="https://martinahladka.pixin.gallery/detail-prezentacni-galerie/id=194152" target="_blank" rel="noopener">Martina indoor<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></a></li>
-            <li><a class="gal-link" href="https://martinahladka.pixin.gallery/" target="_blank" rel="noopener">Více<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></a></li>
+            <li><a class="gal-link" href="https://martinahladka.pixin.gallery/sa/h=pxbnidayfv" target="_blank" rel="noopener">Klárka<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></a></li>
+            <li><a class="gal-link" href="https://martinahladka.pixin.gallery/sa/h=0rtyxsaq40" target="_blank" rel="noopener">A &amp; V<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></a></li>
+            <li><a class="gal-link" href="https://martinahladka.pixin.gallery/sa/h=po0cigxujl" target="_blank" rel="noopener">Nela<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></a></li>
+            <li><a class="gal-link" href="https://martinahladka.pixin.gallery/sa/h=8mx6xzx7ka" target="_blank" rel="noopener">Terka<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></a></li>
+            <li><a class="gal-link" href="https://martinahladka.pixin.gallery/sa/h=ufjpzugrds" target="_blank" rel="noopener">Verča &amp; Jirka<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></a></li>
           </ul>
         </div>
 
         <div class="gal-group">
-          <p class="label" style="color:rgba(42,42,42,.62)">Ostatní</p>
+          <h3 class="guide-heading">Firmy &amp; akce</h3>
           <ul>
-            <li><a class="gal-link" href="https://martinahladka.pixin.gallery/sa/h=2jtdc4adio" target="_blank" rel="noopener">Akce Legitas<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></a></li>
-            <li><a class="gal-link" href="https://martinahladka.pixin.gallery/sa/h=ck2obcxc5g" target="_blank" rel="noopener">Výstava Jesus<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></a></li>
-            <li><a class="gal-link" href="https://martinahladka.pixin.gallery/" target="_blank" rel="noopener">Více<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></a></li>
+            <li><a class="gal-link" href="https://martinahladka.pixin.gallery/sa/h=2jtdc4adio" target="_blank" rel="noopener">Divy<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></a></li>
+            <li><a class="gal-link" href="https://martinahladka.pixin.gallery/sa/h=b3rd4btdnr" target="_blank" rel="noopener">Scaleup Night<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></a></li>
+            <li><a class="gal-link" href="https://martinahladka.pixin.gallery/sa/h=3wkqsufsg7" target="_blank" rel="noopener">Business focení<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></a></li>
+            <li><a class="gal-link" href="https://martinahladka.pixin.gallery/sa/h=k8u6oclqu4" target="_blank" rel="noopener">Oslava<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></a></li>
           </ul>
         </div>
       </div>
 
-      <div id="faq" class="mt-4 md:mt-5">
+      <div id="faq" class="mt-12">
 
       <p class="label" style="color:rgba(42,42,42,.62)">Časté dotazy</p>
       <div class="mt-4">
         <details class="faq">
-        <summary>Jak probíhá rezervace termínu?<span class="ind" aria-hidden="true"></span></summary>
-        <!-- TODO: doplnit odpověď od Martiny -->
-        <div class="faq-body"><span class="faq-todo">Doplnit odpověď.</span></div>
+        <summary>Jak probíhá rezervace termínu svatby?<span class="ind" aria-hidden="true"></span></summary>
+        <div class="faq-body">
+          <p>Není nic důležitějšího než mít ve svatební den kolem sebe lidi, kteří Vám sednou a se kterými se budete cítit dobře. V případě zájmu o focení si s Vámi ráda domluvím <strong>online setkání či kafe v Praze</strong>.</p>
+          <p>Pokud se po schůzce rozhodnete pro mne, zašlu vám smlouvu k podpisu a <strong>fakturu na 50&nbsp;% částky</strong>. Zbylá částka se poté doplácí <strong>jeden týden před svatbou</strong>.</p>
+        </div>
         </details>
         <details class="faq">
-        <summary>Co všechno je v ceně focení?<span class="ind" aria-hidden="true"></span></summary>
-        <!-- TODO: doplnit odpověď od Martiny -->
-        <div class="faq-body"><span class="faq-todo">Doplnit odpověď.</span></div>
+        <summary>Co se děje v období mezi rezervací termínu a svatbou?<span class="ind" aria-hidden="true"></span></summary>
+        <div class="faq-body">
+          <p>Po celou dobu vašich svatebních příprav jsem vám <strong>k dispozici na telefonu či emailu</strong>.</p>
+          <p><strong>Přibližně měsíc před svatbou</strong> se opět potkáme online, abychom společně doladili všechny detaily vašeho svatebního dne.</p>
+        </div>
         </details>
         <details class="faq">
-        <summary>Kdy dostanu hotové fotografie?<span class="ind" aria-hidden="true"></span></summary>
-        <!-- TODO: doplnit odpověď od Martiny -->
-        <div class="faq-body"><span class="faq-todo">Doplnit odpověď.</span></div>
+        <summary>Kdy obdržím fotky a v jaké formě?<span class="ind" aria-hidden="true"></span></summary>
+        <div class="faq-body">
+          <p>Je pro mě důležité, abyste měli vzpomínky na tento vzácný den co nejdříve u sebe. <strong>Do 48 hodin od svatby</strong> ode mne obdržíte <strong>10 fotografií</strong>, které Vám ukáží první okamžiky vašeho dne. Na těchto fotkách si také odsouhlasíme barevné ladění fotek.</p>
+          <p>Celou galerii poté obdržíte <strong>do 3 týdnů od svatby</strong>.</p>
+          <p>Fotky dostanete přes <strong>online galerii Pixin</strong>, odkud si můžete stáhnout fotky v plné kvalitě a zároveň je můžete nasdílet všem svatebčanům.</p>
+        </div>
+        </details>
+        <details class="faq">
+        <summary>Jak probíhá rezervace termínu párového&nbsp;/ portrétního&nbsp;/ těhotenského focení?<span class="ind" aria-hidden="true"></span></summary>
+        <div class="faq-body">
+          <p>Pokud máte zájem o tento druh focení, neváhejte mi <strong>napsat na email či instagram</strong>.</p>
+          <p>Společně domluvíme vyhovující termín a lokalitu, kde bude focení probíhat. Pokud si vyberete venkovní focení, termín doladíme <strong>podle předpovědi počasí</strong>.</p>
+        </div>
+        </details>
+        <details class="faq">
+        <summary>Co si vzít na focení na sebe?<span class="ind" aria-hidden="true"></span></summary>
+        <div class="faq-body">
+          Sestavila jsem Vám zde pár rad, které Vám mohou být nápomocné.
+          <button type="button" class="text-cta mt-3" data-modal-open="outfit-modal">Co na sebe na focení<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></button>
+        </div>
+        </details>
+        <details class="faq">
+        <summary>Mám zájem o firemní či businessové focení, jaké jsou ceny?<span class="ind" aria-hidden="true"></span></summary>
+        <div class="faq-body">
+          <p>Pokud máte zájem o nafocení konference, firemní akce či business focení, neváhejte se mi ozvat.</p>
+          <p>Podle vašich potřeb vytvoříme <strong>cenovou nabídku Vám na míru</strong>.</p>
+        </div>
         </details>
       </div>
       </div>
     </div>
 
-    <div class="relative min-h-[420px] md:min-h-[680px]">
+    <div class="gal-photo relative min-h-[420px] md:min-h-[680px]">
       <img class="absolute inset-0 w-full h-full object-cover"
            src="upload/svatby/mh_galerie.webp" alt="Svatební hosté při oslavě" loading="lazy">
     </div>
@@ -693,27 +791,32 @@
 </section>
 
 <!-- ==================== TESTIMONIALS ==================== -->
-<section aria-label="Reference" class="about px-4 md:px-6 py-[100px] md:py-[140px]">
+<section aria-label="Reference" class="about px-4 md:px-6 py-[64px] md:py-[88px]">
   <div class="max-w-[1140px] mx-auto flex items-center gap-3 md:gap-12">
     <button type="button" class="slider-arrow" data-slider="prev" aria-label="Předchozí reference">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>
     </button>
 
-    <div class="flex-1 text-center">
+    <div class="testimonial-stage flex-1 text-center">
       <article class="testimonial">
-        <h2 class="h2">Klára &amp; Tomáš</h2>
-        <p class="body max-w-[740px] mx-auto mt-6">Martinu bychom doporučili každému páru. Byla neuvěřitelně milá a pozorná k celé rodině a do své práce vložila tolik <strong class="font-semibold">lásky a energie</strong>. Její styl je něčím vzácný — má naprosto výjimečné oko. S manželem jsme z fotek nadšení a kromě skvělé fotografky jsme získali i kamarádku.</p>
-        <p class="mt-6"><a class="text-cta" href="https://martinahladka.pixin.gallery/sa/h=ck2obcxc5g" target="_blank" rel="noopener">Zobrazit galerii<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></a></p>
+        <h2 class="h2">Domča a Kuba</h2>
+        <p class="body max-w-[740px] mx-auto mt-6">Marťa nebyla na naší svatbě pouze fotografkou. Během celého dne se stala <strong>naší rádkyní a oporou</strong>. Dokonale vplula do našeho svatebního dne a během něho dokázala fungovat snad lépe než my. Každou situaci vycítila perfektně a byla vždy tam, kde měla být. Všechno a všechny si dokázala zkoordinovat a do chaotického dne přinesla klid. Jen díky ní máme náš den zachycený tak, že při procházení fotek mi vždy ukápne slza. Její fotky nesou emoce a vzpomínky, které se nepodaří zachytit jen tak někomu. Třešničkou na dortu bylo to, že rychlost odevzdání fotek <strong>byla nadzvuková</strong>, opravdu. Marťa je nejen profesionální fotografka, ale i skvělý člověk, kterého jsme měli čest poznat a doufáme, že se ještě při nějaké situaci potkáme. Za nás musíme smeknout a vyřknout obrovské poděkování.</p>
+        <p class="mt-6"><a class="text-cta" href="https://martinahladka.pixin.gallery/sa/h=of7tdvdprb" target="_blank" rel="noopener">Zobrazit galerii<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></a></p>
       </article>
       <article class="testimonial" hidden>
-        <h2 class="h2">Anna &amp; Petr</h2>
-        <p class="body max-w-[740px] mx-auto mt-6">Celý den byla přítomná, ale nikdy nebyla vidět. Fotky nám vrací přesně tu <strong class="font-semibold">atmosféru a emoce</strong>, na které si pamatujeme — smích v zákulisí, ticho před obřadem, poslední tanec. Nic zinscenovaného, jen náš den takový, jaký doopravdy byl.</p>
-        <p class="mt-6"><a class="text-cta" href="https://martinahladka.pixin.gallery/sa/h=pyzhm3e2bu" target="_blank" rel="noopener">Zobrazit galerii<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></a></p>
+        <h2 class="h2">Domča a Rony</h2>
+        <p class="body max-w-[740px] mx-auto mt-6">Martina má neuvěřitelný cit pro zachycení emocí a těch nejkrásnějších okamžiků. Díky její klidné povaze a příjemné energii jsme se po celý den <strong>cítili naprosto přirozeně</strong> a mohli si naši svatbu naplno užít. Děkujeme za překrásné fotografie, ke kterým se budeme s láskou vracet celý život. <strong>Nemohli jsme si přát lepší fotografku!</strong></p>
+        <p class="mt-6"><a class="text-cta" href="https://martinahladka.pixin.gallery/sa/h=bhnahtdvhj" target="_blank" rel="noopener">Zobrazit galerii<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></a></p>
       </article>
       <article class="testimonial" hidden>
-        <h2 class="h2">Eliška &amp; Jakub</h2>
-        <p class="body max-w-[740px] mx-auto mt-6">Od první konzultace jsme věděli, že jsme ve správných rukou. Martina má klid, který se přenese na celou svatbu, a <strong class="font-semibold">citlivý pohled</strong>, díky kterému vypadá i obyčejný okamžik jako vzpomínka. Snímky na film jsou pro nás to nejcennější, co nám ze dne zůstalo.</p>
-        <p class="mt-6"><a class="text-cta" href="https://martinahladka.pixin.gallery/detail-prezentacni-galerie/id=194152" target="_blank" rel="noopener">Zobrazit galerii<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></a></p>
+        <h2 class="h2">Lenka a Patrik</h2>
+        <p class="body max-w-[740px] mx-auto mt-6">Od začátku jsme si moc cenili toho, jak skvělá byla s Marťou domluva a jak přirozeně celý den probíhal. <strong>Do ničeho nás nenutila</strong>, plně respektovala naše přání a po celou dobu byla neuvěřitelně milá a příjemná. Pro nás, jako pro lidi, kteří se neradi fotí, to bylo naprosto klíčové. Z výsledku jsme nadšení. Vlastně vůbec nechápeme, jak se jí to podařilo, ale na fotkách vypadají všichni <strong>přirozeně, krásně a vždycky v ten správný moment</strong>. Fotky dokonale zachycují atmosféru celého dne a výrazně předčily naše očekávání. Marťu bychom bez váhání doporučili všem.</p>
+        <p class="mt-6"><a class="text-cta" href="https://martinahladka.pixin.gallery/sa/h=mipfkj4a9z" target="_blank" rel="noopener">Zobrazit galerii<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></a></p>
+      </article>
+      <article class="testimonial" hidden>
+        <h2 class="h2">Anička a Martin</h2>
+        <p class="body max-w-[740px] mx-auto mt-6">To, že Martina dělá skvělé fotky, je bez debat. Co ale dělá její snímky tak přirozené? Když vás fotí, vůbec nemáte pocit, že je na svatbě jen jako placený fotograf. <strong>Perfektně zapadne mezi hosty</strong>, kteří se v její přítomnosti cítí uvolněně a příjemně. A rozhodně musíme vyzdvihnout párové focení — byla to pro nás chvilka klidu v hektickém svatebním dni. <strong>Martina vás nenastavuje jako figurky</strong>, ale velmi citlivě zachycuje reálné emoce a momenty mezi vámi.</p>
+        <p class="mt-6"><a class="text-cta" href="https://martinahladka.pixin.gallery/sa/h=9mo39tvekq" target="_blank" rel="noopener">Zobrazit galerii<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></a></p>
       </article>
     </div>
 
@@ -779,6 +882,98 @@
   </nav>
 </div>
 
+<!-- ==================== MODAL: Co na sebe na focení ====================
+     Generic modal — any [data-modal-open="<id>"] trigger opens the matching
+     [data-modal="<id>"] dialog. -->
+<div id="outfit-modal" class="modal" data-modal="outfit-modal" hidden>
+  <div class="modal-backdrop" data-modal-close></div>
+  <div class="modal-panel modal-panel--wide" role="dialog" aria-modal="true" aria-labelledby="outfit-modal-title">
+    <button type="button" class="modal-close" data-modal-close aria-label="Zavřít">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+
+    <div class="modal-scroll">
+  
+      <h2 class="h2" id="outfit-modal-title">Co na sebe na focení?</h2>
+      <p class="body mt-2" style="color:rgba(42,42,42,.62)">Malý průvodce stylingem pro rodinné a párové focení</p>
+  
+      <p class="body mt-6">Moc se na vás těším! Aby pro vás bylo chystání co nejsnazší, sepsala jsem pár tipů k výběru oblečení. Neber je prosím jako pravidla — jsou to jen doporučení, díky kterým budou fotky nadčasové a budou vám dělat radost i za mnoho let. To úplně nejdůležitější je totiž jediné: <strong>abyste se cítili dobře a byli sami sebou</strong>. O zbytek se postarám já.</p>
+  
+      <div class="mt-8">
+        <h3 class="guide-heading">Barvy, které na fotkách kouzlí</h3>
+        <p class="body mt-2">Nejkrásněji fungují tlumené a přírodní tóny. Nechají vyniknout vás, vaše emoce a atmosféru okamžiku — ne oblečení.</p>
+        <ul class="guide-list mt-3">
+          <li>Sáhni po krémové, béžové, karamelové, olivové, šalvějové, rezavé, prašně růžové nebo tmavě modré.</li>
+          <li><strong>Slaďte se, ale nebuďte stejní.</strong> Vyberte 2–3 barvy, které spolu ladí, a v rámci nich kombinujte. Působí to přirozeněji, než když mají všichni stejné tričko.</li>
+          <li>Jemné světlé odstíny krásně fungují v ateliéru, teplé zemité tóny zase venku — v přírodě i ve městě.</li>
+        </ul>
+      </div>
+  
+      <div class="mt-8">
+        <h3 class="guide-heading">Střihy a materiály, které miluju</h3>
+        <ul class="guide-list mt-3">
+          <li><strong>Vrstvení.</strong> Svetr, kardigan, sako nebo kabát dodají fotce hloubku a nám prostor si hrát.</li>
+          <li>Přírodní materiály a textury — úplet, len, bavlna, vlna, manšestr. Na fotkách krásně žijí.</li>
+          <li>Splývavé šaty a sukně (midi nebo maxi) se nádherně hýbou při chůzi i ve větru.</li>
+          <li>Dlouhý či tříčtvrteční rukáv lichotí úplně každému.</li>
+          <li>Oblečení, které dobře padne a můžeš se v něm hýbat, točit, objímat i zvedat děti.</li>
+        </ul>
+      </div>
+  
+      <div class="mt-8">
+        <h3 class="guide-heading">Čemu se raději vyhnout</h3>
+        <p class="body mt-2">Nic z toho není zakázané — jen ze zkušenosti vím, že na fotkách spíš ruší:</p>
+        <ul class="guide-list mt-3">
+          <li><strong>Výrazné potisky, velká loga a nápisy.</strong> Přitahují pozornost víc než vaše tváře.</li>
+          <li><strong>Košile a trička s krátkým rukávem.</strong> Dlouhý rukáv (klidně vyhrnutý) působí vždycky elegantněji.</li>
+          <li><strong>Neonové a příliš zářivé barvy.</strong> Odrážejí se do obličeje a na fotce „křičí“.</li>
+          <li><strong>Drobné husté vzory</strong> (kostičky, tenké proužky) — na fotkách se mohou nepříjemně vlnit.</li>
+          <li>Tepláky, funkční sportovní oblečení a u dětí oblečení s pohádkovými postavičkami.</li>
+          <li>Úplně nové, nevyšlápnuté boty. Nepohodlí je na fotkách bohužel vidět.</li>
+        </ul>
+      </div>
+  
+      <div class="mt-8">
+        <h3 class="guide-heading">Pro rodiny s dětmi</h3>
+        <ul class="guide-list mt-3">
+          <li><strong>Osvědčený postup:</strong> nejdřív vybere outfit maminka — takový, ve kterém se cítí skvěle. Ostatní se k ní pak snadno doladí.</li>
+          <li><strong>Dětem dopřej hlavně pohodlí.</strong> Když nic neškrábe a netlačí, úsměvy přijdou samy. Přibal náhradní oblečení — u malých dětí se vždycky hodí.</li>
+          <li>Oblíbená hračka nebo deka může krásně dokreslit atmosféru.</li>
+        </ul>
+      </div>
+  
+      <div class="mt-8">
+        <h3 class="guide-heading">Pro páry</h3>
+        <ul class="guide-list mt-3">
+          <li>Klidně se vyparáďte — focení je ta nejlepší záminka.</li>
+          <li>Látky v pohybu (splývavá sukně, volnější šaty, rozevlátý kabát) dodají fotkám romantiku.</li>
+          <li><strong>Slaďte úroveň outfitů.</strong> K elegantním šatům sedí košile nebo jemný svetr, ne mikina.</li>
+          <li>Podpatky? Krásné, ale mysli na terén — na přesuny se hodí balerínky v tašce.</li>
+        </ul>
+      </div>
+  
+      <img class="img-rounded mt-8 w-full" src="upload/modal/dress-modal.webp" alt="Inspirace oblečením na rodinné a párové focení" width="1240" height="984" loading="lazy">
+  
+      <div class="mt-8">
+        <h3 class="guide-heading">Maličkosti, které dělají divy</h3>
+        <ul class="guide-list mt-3">
+          <li>Outfit si vyzkoušej pár dní předem, v klidu a včetně bot a doplňků.</li>
+          <li>Vyžehlit se vyplatí — fotoaparát vidí každý záhyb.</li>
+          <li><strong>Upravené ruce a nehty.</strong> Držení za ruce a objetí fotím hodně zblízka.</li>
+          <li>Jednoduché šperky podtrhnou, ale nepřebijí.</li>
+          <li>Chytré hodinky a fitness náramky nech na chvíli odpočívat doma.</li>
+          <li>Vrstva navíc podle počasí — když je vám teplo a příjemně, je to na fotkách znát.</li>
+        </ul>
+      </div>
+  
+      <p class="body mt-8">A na závěr to hlavní: <strong>přijďte takoví, jací jste</strong>. Nejkrásnější fotky vznikají ve chvílích, kdy se smějete, objímáte a užíváte si čas spolu — oblečení je jen třešnička. Když si s výběrem nebudeš vědět rady, napiš mi. Klidně mi pošli fotky pár variant a vybereme společně. Moc se na vás těším!</p>
+  
+      <p class="signature mt-6">S láskou, Martina Hladká</p>
+  
+    </div>
+  </div>
+</div>
+
 <script>
   // Testimonial slider
   (function () {
@@ -829,6 +1024,32 @@
     trigger.addEventListener('click', function () { set(true); });
     document.querySelector('[data-menu="close"]').addEventListener('click', function () { set(false); });
     menu.addEventListener('click', function (e) { if (e.target.tagName === 'A') set(false); });
+  })();
+
+  // Modals — any [data-modal-open="id"] opens the [data-modal="id"] dialog;
+  // the backdrop, the × button, or Escape close whichever one is open.
+  (function () {
+    var openModal = null;
+    function close() {
+      if (!openModal) return;
+      openModal.hidden = true;
+      document.body.style.overflow = '';
+      openModal = null;
+    }
+    function open(id) {
+      var modal = document.querySelector('[data-modal="' + id + '"]');
+      if (!modal) return;
+      modal.hidden = false;
+      document.body.style.overflow = 'hidden';
+      openModal = modal;
+    }
+    document.querySelectorAll('[data-modal-open]').forEach(function (btn) {
+      btn.addEventListener('click', function () { open(btn.getAttribute('data-modal-open')); });
+    });
+    document.querySelectorAll('[data-modal-close]').forEach(function (btn) {
+      btn.addEventListener('click', close);
+    });
+    window.addEventListener('keydown', function (e) { if (e.key === 'Escape') close(); });
   })();
 </script>
 
