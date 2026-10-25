@@ -238,6 +238,14 @@
   @media (max-width:767px){
     .hero-actions{ flex-direction:column; }
     .hero-actions a{ text-align:center; }
+    /* The whole opening — photo, headline and both buttons — is sized to the
+       visible screen (svh = height with the browser bars showing), so the CTAs
+       are never pushed below the fold. The photo takes whatever height is left
+       and crops to fit, biased to the upper third where the faces are. */
+    .hero-photo{ display:flex; flex-direction:column; height:100vh; height:100svh; min-height:520px; }
+    .hero-photo picture{ flex:1 1 0; min-height:0; display:block; }
+    .hero-photo img{ height:100%; aspect-ratio:auto; object-position:center 30%; }
+    .hero-photo-copy{ flex:none; margin-top:-56px; padding-bottom:28px; gap:16px; }
   }
   .hero-actions{ display:flex; flex-wrap:wrap; gap:8px; }
   .hero-actions .btn-primary{ padding:16px 32px; }
@@ -503,8 +511,8 @@
 <!-- ==================== HERO ==================== -->
 <header id="top" class="hero-photo">
   <picture>
-    <source media="(max-width:767px)" srcset="upload/full-width/main-page-mobile-3.webp" width="921" height="1280">
-    <img src="upload/full-width/main-hp-secondary.webp" width="1920" height="1280" fetchpriority="high"
+    <source media="(max-width:767px)" srcset="upload/full-width/main-page-mobile-2.webp" width="921" height="1280">
+    <img src="upload/full-width/main-page.webp" width="1920" height="1280" fetchpriority="high"
          alt="Svatebčané slaví na terase s výhledem na zámek v Českém Krumlově">
   </picture>
   <div class="hero-photo-copy">
