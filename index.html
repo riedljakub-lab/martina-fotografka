@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="cs">
 <head>
+<script>
+  // Google Consent Mode v2 — every signal starts DENIED. Nothing is measured
+  // until the visitor presses "Do záběru" (see the cookie bar script below).
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){ dataLayer.push(arguments); }
+  gtag('consent', 'default', { analytics_storage:'denied', ad_storage:'denied', ad_user_data:'denied', ad_personalization:'denied' });
+</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Fotografka Martina Hladká | Svatební a portrétní focení</title>
@@ -19,11 +26,130 @@
 <link rel="icon" type="image/svg+xml" href="upload/favicon/favicon.svg">
 <link rel="icon" type="image/png" sizes="180x180" href="upload/favicon/favicon.png">
 <link rel="apple-touch-icon" href="upload/favicon/favicon.png">
+<link rel="preload" href="assets/fonts/bodoni-moda-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/archivo-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
 <script src="https://cdn.tailwindcss.com"></script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..600;1,6..96,400..600&family=Archivo:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
+  /* Fonts are served from the site itself (no request to Google): faster first
+     paint in in-app browsers and no visitor IP sent to a third party.
+     Latin + Latin Extended only, which covers Czech. */
+  /* Archivo normal latin-ext */
+  @font-face {
+    font-family: 'Archivo';
+    font-style: normal;
+    font-weight: 400;
+    font-stretch: 100%;
+    font-display: swap;
+    src: url(assets/fonts/archivo-normal-latin-ext.woff2) format('woff2');
+    unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+  }
+  /* Archivo normal latin */
+  @font-face {
+    font-family: 'Archivo';
+    font-style: normal;
+    font-weight: 400;
+    font-stretch: 100%;
+    font-display: swap;
+    src: url(assets/fonts/archivo-normal-latin.woff2) format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+  }
+  /* Archivo normal latin-ext */
+  @font-face {
+    font-family: 'Archivo';
+    font-style: normal;
+    font-weight: 500;
+    font-stretch: 100%;
+    font-display: swap;
+    src: url(assets/fonts/archivo-normal-latin-ext.woff2) format('woff2');
+    unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+  }
+  /* Archivo normal latin */
+  @font-face {
+    font-family: 'Archivo';
+    font-style: normal;
+    font-weight: 500;
+    font-stretch: 100%;
+    font-display: swap;
+    src: url(assets/fonts/archivo-normal-latin.woff2) format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+  }
+  /* Archivo normal latin-ext */
+  @font-face {
+    font-family: 'Archivo';
+    font-style: normal;
+    font-weight: 600;
+    font-stretch: 100%;
+    font-display: swap;
+    src: url(assets/fonts/archivo-normal-latin-ext.woff2) format('woff2');
+    unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+  }
+  /* Archivo normal latin */
+  @font-face {
+    font-family: 'Archivo';
+    font-style: normal;
+    font-weight: 600;
+    font-stretch: 100%;
+    font-display: swap;
+    src: url(assets/fonts/archivo-normal-latin.woff2) format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+  }
+  /* Archivo normal latin-ext */
+  @font-face {
+    font-family: 'Archivo';
+    font-style: normal;
+    font-weight: 700;
+    font-stretch: 100%;
+    font-display: swap;
+    src: url(assets/fonts/archivo-normal-latin-ext.woff2) format('woff2');
+    unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+  }
+  /* Archivo normal latin */
+  @font-face {
+    font-family: 'Archivo';
+    font-style: normal;
+    font-weight: 700;
+    font-stretch: 100%;
+    font-display: swap;
+    src: url(assets/fonts/archivo-normal-latin.woff2) format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+  }
+  /* Bodoni Moda italic latin-ext */
+  @font-face {
+    font-family: 'Bodoni Moda';
+    font-style: italic;
+    font-weight: 400 600;
+    font-display: swap;
+    src: url(assets/fonts/bodoni-moda-italic-latin-ext.woff2) format('woff2');
+    unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+  }
+  /* Bodoni Moda italic latin */
+  @font-face {
+    font-family: 'Bodoni Moda';
+    font-style: italic;
+    font-weight: 400 600;
+    font-display: swap;
+    src: url(assets/fonts/bodoni-moda-italic-latin.woff2) format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+  }
+  /* Bodoni Moda normal latin-ext */
+  @font-face {
+    font-family: 'Bodoni Moda';
+    font-style: normal;
+    font-weight: 400 600;
+    font-display: swap;
+    src: url(assets/fonts/bodoni-moda-normal-latin-ext.woff2) format('woff2');
+    unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+  }
+  /* Bodoni Moda normal latin */
+  @font-face {
+    font-family: 'Bodoni Moda';
+    font-style: normal;
+    font-weight: 400 600;
+    font-display: swap;
+    src: url(assets/fonts/bodoni-moda-normal-latin.woff2) format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+  }
+
   /* ---------- Monochrome editorial design tokens ---------- */
   :root{
     --color-charcoal:#2A2A2A;
@@ -181,6 +307,11 @@
     -webkit-backdrop-filter:saturate(140%) blur(10px);
     border-bottom:1px solid var(--color-mist);
   }
+  /* Re-blurring the photos under the bar on every scroll frame is one of the
+     most expensive effects for phone webviews: there it's a near-solid fill. */
+  @media (max-width:1023px), (hover:none){
+    .top-bar{ background:rgba(244,244,242,.97); -webkit-backdrop-filter:none; backdrop-filter:none; }
+  }
 
   .card{
     background:var(--color-white);
@@ -223,7 +354,7 @@
   .hero-photo .h1{ font-size:clamp(34px,4.45vw,64px); font-weight:600; line-height:1.02; letter-spacing:-.005em;
     /* Dark type over a photograph needs a light halo, not a dark shadow: three
        stacked paper-coloured glows lift the letters off the crowd behind. */
-    text-shadow:0 0 2px rgba(244,244,242,.7), 0 0 15px rgba(244,244,242,.7), 0 0 15px rgba(244,244,242,.42), 0 0 41px rgba(244,244,242,.7), 0 0 41px rgba(244,244,242,.28); }
+    text-shadow:0 0 14px rgba(244,244,242,.85), 0 0 38px rgba(244,244,242,.7); }
   @media (max-width:767px){ .hero-photo .h1{ line-height:1.12; } }
   .hero-photo{ padding-top:64px; }
   /* Mobile: the square crop is shown whole, edge to edge, and dissolves into
@@ -426,6 +557,38 @@
   .body strong,.faq-body strong,.guide-list strong{ font-weight:600; color:var(--color-black); }
   .faq-todo{ color:rgba(42,42,42,.62); font-style:italic; }
 
+  /* Phones: band frames take a fixed 3:4 shape (≈ the old 62vh on a 844px
+     phone). In-app browsers such as Instagram's resize vh while their toolbar
+     slides in and out, which made every frame resize mid-scroll. */
+  @media (max-width:767px){ .photo-band img{ height:auto; min-height:0; aspect-ratio:3/4; } }
+
+  /* Cookie bar — a small card in the corner (full-width strip on phones). Both
+     buttons are identical in size and style on purpose: refusing has to be as
+     easy as accepting. */
+  .cookie-bar{
+    position:fixed; z-index:45; left:12px; right:12px; bottom:12px;
+    background:var(--color-white); border:1px solid var(--color-mist); border-radius:4px;
+    box-shadow:var(--shadow-modal); padding:20px;
+    animation:cookie-in .4s cubic-bezier(.22,1,.36,1);
+  }
+  .cookie-bar[hidden]{ display:none; }
+  @keyframes cookie-in{ from{ opacity:0; transform:translateY(12px); } to{ opacity:1; transform:none; } }
+  @media (prefers-reduced-motion:reduce){ .cookie-bar{ animation:none; } }
+  @media (min-width:768px){ .cookie-bar{ left:24px; right:auto; bottom:24px; max-width:400px; padding:24px; } }
+  .cookie-title{ font-family:var(--font-display); font-weight:500; font-size:20px; line-height:1.25; color:var(--color-charcoal); }
+  .cookie-text{ margin-top:8px; font-size:14px; line-height:1.6; color:rgba(42,42,42,.86); }
+  .cookie-actions{ display:flex; gap:8px; margin-top:16px; }
+  .cookie-actions button{
+    flex:1 1 0; padding:13px 12px; border:1px solid var(--color-charcoal); border-radius:2px;
+    font-size:13px; font-weight:600; letter-spacing:1px; text-transform:uppercase; color:var(--color-charcoal);
+    background:transparent; transition:background .2s ease,color .2s ease;
+  }
+  .cookie-actions button:hover{ background:var(--color-black); border-color:var(--color-black); color:var(--color-white); }
+  .cookie-actions button[data-cookie="accept"]{ background:var(--color-black); border-color:var(--color-black); color:var(--color-white); }
+  .cookie-actions button[data-cookie="accept"]:hover{ background:var(--color-black-hover); border-color:var(--color-black-hover); }
+  .cookie-reopen{ font-size:13px; font-weight:500; color:rgba(42,42,42,.7); text-decoration:underline; text-underline-offset:3px; transition:color .2s ease; }
+  .cookie-reopen:hover{ color:var(--color-black); }
+
   /* Generic modal — opened by any [data-modal-open] trigger, closed by the
      backdrop, the × button, or Escape. Centred paper card, modal-weight shadow. */
   .modal{ position:fixed; inset:0; z-index:60; display:flex; align-items:center; justify-content:center; padding:24px; }
@@ -437,7 +600,7 @@
   }
   /* The panel itself never scrolls; only .modal-scroll does, so the × stays
      pinned to the corner at every scroll position. */
-  .modal-scroll{ max-height:calc(100vh - 48px); overflow-y:auto; padding:56px 32px 32px; }
+  .modal-scroll{ max-height:calc(100vh - 48px); max-height:calc(100svh - 48px); overflow-y:auto; padding:56px 32px 32px; }
   .modal-panel--wide{ max-width:846px; }
   @media (min-width:640px){ .modal-scroll{ padding:56px 48px 48px; } }
   .modal-close{
@@ -843,6 +1006,7 @@
     <div class="md:text-right">
       <p><a class="foot-link" href="mailto:m.pelclova@gmail.com"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="5" width="19" height="14" rx="2.5"/><path d="m3.2 7.2 8.8 5.9 8.8-5.9"/></svg><span>m.pelclova@gmail.com</span></a></p>
       <p class="mt-4"><a class="foot-link" href="https://www.instagram.com/martinahladka_fotograf/" target="_blank" rel="noopener"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1.1" fill="currentColor" stroke="none"/></svg><span>@martinahladka_fotograf</span></a></p>
+      <p class="mt-4"><button type="button" class="foot-link" data-cookie-open><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a9 9 0 1 0 9 9 4.5 4.5 0 0 1-4.5-4.5A4.5 4.5 0 0 1 12 3Z"/><circle cx="9" cy="10" r=".8" fill="currentColor" stroke="none"/><circle cx="12.5" cy="15" r=".8" fill="currentColor" stroke="none"/><circle cx="8" cy="14.5" r=".8" fill="currentColor" stroke="none"/></svg><span>Nastavení cookies</span></button></p>
     </div>
 
   </div>
@@ -888,6 +1052,17 @@
     <a class="menu-item" href="#kontakt">Kontakt</a>
     <a class="menu-item" href="https://www.instagram.com/martinahladka_fotograf/" target="_blank" rel="noopener"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1.1" fill="currentColor" stroke="none"/></svg>Instagram</a>
   </nav>
+</div>
+
+<!-- ==================== COOKIE BAR ====================
+     Only one purpose is ever asked about: anonymous analytics (GA4 via GTM). -->
+<div id="cookie-bar" class="cookie-bar" role="dialog" aria-labelledby="cookie-title" aria-describedby="cookie-text" hidden>
+  <p class="cookie-title" id="cookie-title">Než cvaknu spoušť…</p>
+  <p class="cookie-text" id="cookie-text">Používám pouze analytické cookies (Google Analytics), abych věděla, kolik lidí web navštěvuje a co si prohlíží.</p>
+  <div class="cookie-actions">
+    <button type="button" data-cookie="accept">Do záběru</button>
+    <button type="button" data-cookie="decline">Mimo záběr</button>
+  </div>
 </div>
 
 <!-- ==================== MODAL: Co na sebe na focení ====================
@@ -995,7 +1170,10 @@
     document.querySelector('[data-slider="next"]').addEventListener('click', function () { show(i + 1); });
   })();
 
-  // One-pager scroll spy — drives the [aria-current] state in the nav
+  // One-pager scroll spy — drives the [aria-current] state in the nav.
+  // Scroll events can fire several times per frame in slow in-app browsers
+  // (Instagram, Facebook); the measuring now runs at most once per frame, and
+  // the nav is only touched when the active section actually changes.
   (function () {
     var ids = ['top', 'o-mne', 'svatby', 'portrety', 'galerie', 'kontakt'];
     var links = {};
@@ -1003,20 +1181,25 @@
       links[id] = Array.prototype.slice.call(document.querySelectorAll('a[href="#' + id + '"]'));
     });
     var sections = ids.map(function (id) { return document.getElementById(id); }).filter(Boolean);
+    var active = null, queued = false;
     function update() {
+      queued = false;
       var mark = sections[0], line = 64 + 80;
       sections.forEach(function (el) { if (el.getBoundingClientRect().top <= line) mark = el; });
       var doc = document.documentElement;
       if (window.innerHeight + window.scrollY >= doc.scrollHeight - 4) mark = sections[sections.length - 1];
+      if (mark.id === active) return;
+      active = mark.id;
       ids.forEach(function (id) {
         links[id].forEach(function (a) {
-          if (id === mark.id) { a.setAttribute('aria-current', 'page'); }
+          if (id === active) { a.setAttribute('aria-current', 'page'); }
           else { a.removeAttribute('aria-current'); }
         });
       });
     }
-    window.addEventListener('scroll', update, { passive: true });
-    window.addEventListener('resize', update);
+    function schedule() { if (!queued) { queued = true; window.requestAnimationFrame(update); } }
+    window.addEventListener('scroll', schedule, { passive: true });
+    window.addEventListener('resize', schedule);
     update();
   })();
 
@@ -1032,6 +1215,63 @@
     trigger.addEventListener('click', function () { set(true); });
     document.querySelector('[data-menu="close"]').addEventListener('click', function () { set(false); });
     menu.addEventListener('click', function (e) { if (e.target.tagName === 'A') set(false); });
+  })();
+
+  // Cookie consent — analytics only. Choice is remembered for 6 months, then
+  // asked again. Nothing is measured, and GTM is not even downloaded, until the
+  // visitor accepts. Declining (or changing their mind later) also deletes any
+  // GA cookies already set.
+  (function () {
+    var GTM_ID = 'GTM-PF89MMG5';   // loaded only after the visitor accepts analytics
+    var KEY = 'cookie-consent', MONTHS = 6;
+    var bar = document.getElementById('cookie-bar');
+    var gtmLoaded = false;
+
+    function read() {
+      try {
+        var v = JSON.parse(localStorage.getItem(KEY) || 'null');
+        if (v && Date.now() - v.ts < MONTHS * 30 * 864e5) return v;
+      } catch (e) {}
+      return null;
+    }
+    function save(analytics) {
+      try { localStorage.setItem(KEY, JSON.stringify({ analytics: analytics, ts: Date.now() })); } catch (e) {}
+    }
+    function loadGtm() {
+      if (gtmLoaded || !GTM_ID) return;
+      gtmLoaded = true;
+      window.dataLayer.push({ 'gtm.start': Date.now(), event: 'gtm.js' });
+      var s = document.createElement('script');
+      s.async = true; s.src = 'https://www.googletagmanager.com/gtm.js?id=' + encodeURIComponent(GTM_ID);
+      document.head.appendChild(s);
+    }
+    function clearGaCookies() {
+      var host = location.hostname.split('.'), domains = [location.hostname];
+      for (var i = 1; i < host.length - 1; i++) domains.push('.' + host.slice(i).join('.'));
+      document.cookie.split(';').forEach(function (c) {
+        var n = c.split('=')[0].trim();
+        if (n === '_ga' || n.indexOf('_ga_') === 0 || n === '_gid') {
+          document.cookie = n + '=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/';
+          domains.forEach(function (d) { document.cookie = n + '=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/; domain=' + d; });
+        }
+      });
+    }
+    function apply(analytics) {
+      gtag('consent', 'update', { analytics_storage: analytics ? 'granted' : 'denied' });
+      if (analytics) loadGtm(); else clearGaCookies();
+    }
+    function choose(analytics) {
+      save(analytics); apply(analytics); bar.hidden = true;
+    }
+
+    var saved = read();
+    if (saved) apply(saved.analytics); else bar.hidden = false;
+
+    bar.querySelector('[data-cookie="accept"]').addEventListener('click', function () { choose(true); });
+    bar.querySelector('[data-cookie="decline"]').addEventListener('click', function () { choose(false); });
+    document.querySelectorAll('[data-cookie-open]').forEach(function (b) {
+      b.addEventListener('click', function () { bar.hidden = false; });
+    });
   })();
 
   // Modals — any [data-modal-open="id"] opens the [data-modal="id"] dialog;
