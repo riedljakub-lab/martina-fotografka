@@ -324,7 +324,7 @@
 
   /* Slides share one grid cell, so the slider is always as tall as the longest
      quote and the arrows and the sections below never jump between slides. */
-  .testimonial-stage{ display:grid; }
+  .testimonial-stage{ display:grid; touch-action:pan-y; cursor:grab; user-select:none; -webkit-user-select:none; }
   .testimonial{ grid-area:1/1; align-self:center; }
   .testimonial[hidden]{ display:block; visibility:hidden; }
 
@@ -351,7 +351,7 @@
   }
   .btn-secondary:hover{ background:var(--color-charcoal); color:var(--color-white); }
   /* Hero headline carries more weight than the page's other H1-scale type */
-  .hero-photo .h1{ font-size:clamp(34px,4.45vw,64px); font-weight:400; line-height:1.02; letter-spacing:-.005em;
+  .hero-photo .h1{ font-size:clamp(34px,4.45vw,64px); font-weight:600; line-height:1.02; letter-spacing:-.005em;
     /* Dark type over a photograph needs a light halo, not a dark shadow: three
        stacked paper-coloured glows lift the letters off the crowd behind. */
     text-shadow:0 0 14px rgba(244,244,242,.85), 0 0 38px rgba(244,244,242,.7); }
@@ -654,6 +654,11 @@
 
     /* Full-height band: frames keep a 2:3 shape instead of a full screen each */
     .photo-band img{ height:auto; min-height:0; aspect-ratio:2/3; }
+
+    /* Galerie + FAQ: text column only, full width — the picture is dropped */
+    #galerie .gal-photo{ display:none; }
+    #galerie .grid{ grid-template-columns:minmax(0,1fr); }
+    #galerie .grid > div:first-child{ padding-left:48px; padding-right:48px; max-width:760px; }
   }
   /* Portrait tablets: a full-screen hero would crop the wide photograph to a
      sliver, so the picture is shown whole and the headline rises into its fade,
@@ -681,8 +686,8 @@
   <div class="hero-photo-copy">
     <h1 class="h1">Svatební a portrétní<br>fotografka</h1>
     <div class="hero-actions">
-      <a href="#svatby" class="btn-primary">Svatební focení</a>
-      <a href="#portrety" class="btn-secondary">Portréty a rodina</a>
+      <a data-cta="wedding" data-cta-place="hero" href="#svatby" class="btn-primary">Svatební focení</a>
+      <a data-cta="portrait" data-cta-place="hero" href="#portrety" class="btn-secondary">Portréty a rodina</a>
     </div>
   </div>
 </header>
@@ -715,8 +720,8 @@
       <div>
         <p class="label" style="color:rgba(42,42,42,.62)">Co fotím</p>
         <ul class="mt-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-1 gap-2">
-          <li><a class="service" href="#svatby">Svatební focení<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg></a></li>
-          <li><a class="service" href="#portrety">Portréty a rodina<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg></a></li>
+          <li><a data-cta="wedding" data-cta-place="services" class="service" href="#svatby">Svatební focení<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg></a></li>
+          <li><a data-cta="portrait" data-cta-place="services" class="service" href="#portrety">Portréty a rodina<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg></a></li>
           <li><a class="service" href="#galerie">Firemní akce<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg></a></li>
         </ul>
       </div>
@@ -786,7 +791,7 @@
         </div>
         </div>
 
-        <a href="mailto:m.pelclova@gmail.com?subject=Popt%C3%A1vka%20svatebn%C3%ADho%20focen%C3%AD&body=Ahoj%20Martino%2C%0A%0Am%C3%A1me%20z%C3%A1jem%20o%20svatebn%C3%AD%20focen%C3%AD%20a%20r%C3%A1di%20bychom%20se%20zeptali%20na%20dostupnost.%0A%0ATerm%C3%ADn%20svatby%3A%0AM%C3%ADsto%3A%0A%0AD%C4%9Bkujeme." class="btn-primary mt-10">Nezávazná poptávka</a>
+        <a data-cta="wedding" data-cta-place="pricing_email" href="mailto:m.pelclova@gmail.com?subject=Popt%C3%A1vka%20svatebn%C3%ADho%20focen%C3%AD&body=Ahoj%20Martino%2C%0A%0Am%C3%A1me%20z%C3%A1jem%20o%20svatebn%C3%AD%20focen%C3%AD%20a%20r%C3%A1di%20bychom%20se%20zeptali%20na%20dostupnost.%0A%0ATerm%C3%ADn%20svatby%3A%0AM%C3%ADsto%3A%0A%0AD%C4%9Bkujeme." class="btn-primary mt-10">Nezávazná poptávka</a>
       </div>
     </div>
     <div class="hidden md:block relative min-h-[420px] md:min-h-[680px] order-first md:order-none">
@@ -834,7 +839,7 @@
         </div>
         </div>
 
-        <a href="mailto:m.pelclova@gmail.com?subject=Popt%C3%A1vka%20focen%C3%AD%20portr%C3%A9t%C5%AF%20a%20rodiny&body=Ahoj%20Martino%2C%0A%0Am%C3%A1me%20z%C3%A1jem%20o%20focen%C3%AD%20a%20r%C3%A1di%20bychom%20se%20zeptali%20na%20dostupnost.%0A%0ATyp%20focen%C3%AD%3A%0APreferovan%C3%BD%20term%C3%ADn%3A%0AM%C3%ADsto%3A%0A%0AD%C4%9Bkujeme." class="btn-primary mt-10">Domluvit termín</a>
+        <a data-cta="portrait" data-cta-place="pricing_email" href="mailto:m.pelclova@gmail.com?subject=Popt%C3%A1vka%20focen%C3%AD%20portr%C3%A9t%C5%AF%20a%20rodiny&body=Ahoj%20Martino%2C%0A%0Am%C3%A1me%20z%C3%A1jem%20o%20focen%C3%AD%20a%20r%C3%A1di%20bychom%20se%20zeptali%20na%20dostupnost.%0A%0ATyp%20focen%C3%AD%3A%0APreferovan%C3%BD%20term%C3%ADn%3A%0AM%C3%ADsto%3A%0A%0AD%C4%9Bkujeme." class="btn-primary mt-10">Domluvit termín</a>
       </div>
     </div>
   </article>
@@ -887,7 +892,7 @@
             <li><a class="gal-link" href="https://martinahladka.pixin.gallery/sa/h=0rtyxsaq40" target="_blank" rel="noopener">A &amp; V<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></a></li>
             <li><a class="gal-link" href="https://martinahladka.pixin.gallery/sa/h=po0cigxujl" target="_blank" rel="noopener">Nela<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></a></li>
             <li><a class="gal-link" href="https://martinahladka.pixin.gallery/sa/h=8mx6xzx7ka" target="_blank" rel="noopener">Terka<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></a></li>
-            <li><a class="gal-link" href="https://martinahladka.pixin.gallery/sa/h=ufjpzugrds" target="_blank" rel="noopener">V &amp; J<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></a></li>
+            <li><a class="gal-link" href="https://martinahladka.pixin.gallery/sa/h=ufjpzugrds" target="_blank" rel="noopener">Verča &amp; Jirka<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></a></li>
           </ul>
         </div>
 
@@ -1021,8 +1026,8 @@
     <nav class="hidden lg:flex items-center gap-8" aria-label="Hlavní navigace">
       <a class="nav-link" href="#top">Domů</a>
       <a class="nav-link" href="#o-mne">O mně</a>
-      <a class="nav-link" href="#svatby">Svatby</a>
-      <a class="nav-link" href="#portrety">Portréty</a>
+      <a data-cta="wedding" data-cta-place="nav" class="nav-link" href="#svatby">Svatby</a>
+      <a data-cta="portrait" data-cta-place="nav" class="nav-link" href="#portrety">Portréty</a>
       <a class="nav-link" href="#galerie">Galerie</a>
       <a class="nav-link" href="#kontakt">Kontakt</a>
       <a class="nav-link flex items-center" href="https://www.instagram.com/martinahladka_fotograf/" target="_blank" rel="noopener" aria-label="Instagram"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1.1" fill="currentColor" stroke="none"/></svg></a>
@@ -1046,8 +1051,8 @@
   <nav class="px-6 pt-[40px] flex flex-col gap-7" aria-label="Mobilní navigace">
     <a class="menu-item" href="#top">Domů</a>
     <a class="menu-item" href="#o-mne">O mně</a>
-    <a class="menu-item" href="#svatby">Svatby</a>
-    <a class="menu-item" href="#portrety">Portréty</a>
+    <a data-cta="wedding" data-cta-place="mobile_menu" class="menu-item" href="#svatby">Svatby</a>
+    <a data-cta="portrait" data-cta-place="mobile_menu" class="menu-item" href="#portrety">Portréty</a>
     <a class="menu-item" href="#galerie">Galerie</a>
     <a class="menu-item" href="#kontakt">Kontakt</a>
     <a class="menu-item" href="https://www.instagram.com/martinahladka_fotograf/" target="_blank" rel="noopener"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1.1" fill="currentColor" stroke="none"/></svg>Instagram</a>
@@ -1168,6 +1173,27 @@
     }
     document.querySelector('[data-slider="prev"]').addEventListener('click', function () { show(i - 1); });
     document.querySelector('[data-slider="next"]').addEventListener('click', function () { show(i + 1); });
+
+    // Swipe (touch) and drag (mouse) on the stage; vertical scroll stays native.
+    var stage = document.querySelector('.testimonial-stage');
+    var x0 = null, y0 = 0, dragged = false;
+    stage.addEventListener('pointerdown', function (e) {
+      if (e.pointerType === 'mouse' && e.button !== 0) return;
+      x0 = e.clientX; y0 = e.clientY; dragged = false;
+    });
+    stage.addEventListener('pointermove', function (e) {
+      if (x0 !== null && Math.abs(e.clientX - x0) > 8) dragged = true;
+    });
+    function end(e) {
+      if (x0 === null) return;
+      var dx = e.clientX - x0, dy = e.clientY - y0;
+      x0 = null;
+      if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy) * 1.5) show(i + (dx < 0 ? 1 : -1));
+    }
+    stage.addEventListener('pointerup', end);
+    stage.addEventListener('pointercancel', function () { x0 = null; });
+    stage.addEventListener('click', function (e) { if (dragged) { e.preventDefault(); dragged = false; } }, true);
+    stage.addEventListener('dragstart', function (e) { e.preventDefault(); });
   })();
 
   // One-pager scroll spy — drives the [aria-current] state in the nav.
@@ -1273,6 +1299,23 @@
       b.addEventListener('click', function () { bar.hidden = false; });
     });
   })();
+
+  // GA4 CTA tracking — pushes a `cta_click` event to the dataLayer for every
+  // [data-cta] element. Params: cta_type (wedding | portrait), cta_place
+  // (hero | services | nav | mobile_menu | pricing_email), cta_text, link_type.
+  // Nothing is sent to Google until GTM is loaded (i.e. after cookie consent).
+  document.addEventListener('click', function (e) {
+    var el = e.target.closest && e.target.closest('[data-cta]');
+    if (!el) return;
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+      event: 'cta_click',
+      cta_type: el.getAttribute('data-cta'),
+      cta_place: el.getAttribute('data-cta-place') || '',
+      cta_text: (el.textContent || '').trim().replace(/\s+/g, ' '),
+      link_type: (el.getAttribute('href') || '').indexOf('mailto:') === 0 ? 'email' : 'anchor'
+    });
+  });
 
   // Modals — any [data-modal-open="id"] opens the [data-modal="id"] dialog;
   // the backdrop, the × button, or Escape close whichever one is open.
